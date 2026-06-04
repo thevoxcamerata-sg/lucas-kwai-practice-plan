@@ -6,184 +6,180 @@
   <title>Bass Trombone Summer Plan 2026 — Lucas Kwai</title>
   <style>
     :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface2: #222536;
-      --border: #2e3347;
-      --accent: #c9a84c;
-      --accent-muted: #7a6530;
-      --text: #e2e4ee;
-      --muted: #8b90a8;
-      --font: 'Georgia', serif;
-      --mono: 'Courier New', monospace;
-      --sans: system-ui, -apple-system, sans-serif;
-
-      --mon: #5b8fe8;
-      --tue: #e8a44c;
-      --wed: #4caf82;
-      --thu: #9b59b6;
-      --fri: #c9a84c;
-      --sat: #4fc3f7;
-      --sun: #555a6e;
-
-      --p1: #4caf82;
-      --p2: #c9a84c;
-      --p3: #e05c5c;
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #222536; --border: #2e3347;
+      --accent: #c9a84c; --accent-muted: #7a6530;
+      --text: #e2e4ee; --muted: #8b90a8;
+      --font: 'Georgia', serif; --mono: 'Courier New', monospace; --sans: system-ui,-apple-system,sans-serif;
+      --mon:#5b8fe8; --tue:#e8a44c; --wed:#4caf82; --thu:#9b59b6; --fri:#c9a84c; --sat:#4fc3f7; --sun:#555a6e;
+      --p1:#4caf82; --p2:#c9a84c; --p3:#e05c5c;
     }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.65;}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* NAV */
+    nav{position:sticky;top:0;z-index:200;background:rgba(15,17,23,.95);border-bottom:1px solid var(--border);
+      -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);height:50px;display:flex;align-items:center;
+      padding:0 1.5rem;gap:1.75rem;overflow-x:auto;white-space:nowrap;}
+    nav .brand{font-family:var(--font);font-style:italic;color:var(--accent);font-size:14px;flex-shrink:0;margin-right:.5rem;}
+    nav a{font-family:var(--sans);font-size:12.5px;color:var(--muted);text-decoration:none;letter-spacing:.03em;transition:color .15s;}
+    nav a:hover{color:var(--accent);}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 16px;
-      line-height: 1.65;
+    /* HERO */
+    .hero{max-width:900px;margin:0 auto;padding:4rem 2rem 2.5rem;border-bottom:1px solid var(--border);}
+    .eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.85rem;}
+    .hero h1{font-size:2.5rem;font-weight:normal;line-height:1.2;margin-bottom:.4rem;}
+    .hero .sub{color:var(--muted);font-style:italic;font-size:1rem;margin-bottom:2rem;}
+    .hero-meta{display:flex;gap:2.5rem;flex-wrap:wrap;}
+    .meta-item .label{font-family:var(--sans);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px;}
+    .meta-item{font-family:var(--sans);font-size:14px;}
+
+    /* LAYOUT */
+    .container{max-width:900px;margin:0 auto;padding:0 2rem 5rem;}
+    section{padding:3rem 0 1.5rem;border-bottom:1px solid var(--border);}
+    section:last-child{border-bottom:none;}
+    .sec-label{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+    h2{font-size:1.6rem;font-weight:normal;margin-bottom:1.5rem;}
+    h3{font-family:var(--sans);font-size:.95rem;font-weight:bold;margin:2rem 0 .75rem;color:var(--text);}
+    p{margin-bottom:1rem;}
+
+    /* PHASES */
+    .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;}
+    .phase-card{background:var(--surface);border:1px solid var(--border);border-top:3px solid;border-radius:0 0 8px 8px;padding:1.25rem 1.5rem;}
+    .phase-card.p1{border-top-color:var(--p1);}.phase-card.p2{border-top-color:var(--p2);}.phase-card.p3{border-top-color:var(--p3);}
+    .phase-label{font-family:var(--sans);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem;}
+    .phase-name{font-size:1.15rem;margin-bottom:.2rem;}
+    .phase-dates{font-family:var(--sans);font-size:12px;color:var(--muted);margin-bottom:.9rem;}
+    .phase-focus{font-size:.85rem;color:var(--text);line-height:1.5;margin-bottom:1rem;}
+    .phase-tempos{display:flex;flex-direction:column;gap:.3rem;}
+    .phase-tempo-row{font-family:var(--mono);font-size:.8rem;color:var(--muted);}
+    .phase-tempo-row span{color:var(--accent);}
+
+    /* TEMPO TIMELINE */
+    .tempo-timeline{margin:1.5rem 0;}
+    .t-exercise{margin-bottom:1.5rem;}
+    .t-exercise-name{font-family:var(--sans);font-size:.85rem;color:var(--muted);margin-bottom:.5rem;}
+    .t-track{position:relative;height:36px;background:var(--surface);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;overflow:hidden;}
+    .t-fill{height:100%;display:flex;align-items:center;padding:0 .75rem;font-family:var(--mono);font-size:.78rem;color:#000;font-weight:bold;border-radius:6px 0 0 6px;white-space:nowrap;overflow:hidden;}
+    .t-fill.p1c{background:var(--p1);}.t-fill.p2c{background:var(--p2);}.t-fill.p3c{background:var(--p3);}
+
+    /* DISTRIBUTION */
+    .dist-bars{display:flex;flex-direction:column;gap:.75rem;margin:1.5rem 0;}
+    .dist-row{display:grid;grid-template-columns:180px 1fr 60px;align-items:center;gap:1rem;}
+    .dist-label{font-family:var(--sans);font-size:.88rem;color:var(--muted);}
+    .dist-bar-bg{height:8px;background:var(--surface2);border-radius:4px;}
+    .dist-bar-fill{height:100%;border-radius:4px;}
+    .fill-accent{background:var(--accent);}.fill-blue{background:var(--blue);}.fill-green{background:var(--wed);}
+    .dist-pct{font-family:var(--mono);font-size:.85rem;color:var(--text);text-align:right;}
+
+    /* CALENDAR */
+    .cal-progress{display:flex;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap;}
+    .cal-prog-item{font-family:var(--sans);font-size:12px;background:var(--surface);border:1px solid var(--border);
+      border-radius:20px;padding:.3rem .9rem;display:flex;align-items:center;gap:.5rem;}
+    .cal-prog-item .prog-label{color:var(--muted);}
+    .cal-prog-item .prog-count{color:var(--accent);font-weight:bold;}
+
+    .cal-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:1rem 0;}
+    .cal-month{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .cal-month-header{background:var(--surface2);padding:.75rem 1rem;font-family:var(--sans);font-size:.9rem;font-weight:bold;
+      border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+    .cal-phase-badge{font-size:10px;padding:.2rem .5rem;border-radius:10px;font-weight:normal;letter-spacing:.05em;}
+    .cal-dow-row{display:grid;grid-template-columns:repeat(7,1fr);}
+    .cal-dow{font-family:var(--sans);font-size:10px;text-align:center;padding:.4rem 0;color:var(--muted);letter-spacing:.05em;border-bottom:1px solid var(--border);}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);}
+
+    .cal-day{
+      aspect-ratio:1;padding:3px;border:.5px solid var(--border);
+      cursor:pointer;transition:background .12s;
+      display:flex;flex-direction:column;justify-content:space-between;
+      position:relative;overflow:hidden;
     }
+    .cal-day:hover{background:var(--surface2);}
+    .cal-day.empty{cursor:default;background:transparent;}
+    .cal-day.empty:hover{background:transparent;}
+    .cal-day.past{opacity:.45;}
+    .cal-day.today{background:rgba(201,168,76,.12)!important;outline:1.5px solid var(--accent);outline-offset:-1.5px;}
+    .cal-day.done{background:rgba(76,175,130,.1)!important;}
+    .cal-day.done .check-btn{background:var(--wed);border-color:var(--wed);color:#000;}
+    .cal-daynum{font-family:var(--sans);font-size:11px;font-weight:bold;line-height:1;padding:2px 3px;}
+    .cal-theme-dot{width:5px;height:5px;border-radius:50%;margin:0 auto 3px;}
+    .cal-phase-bar{position:absolute;bottom:0;left:0;right:0;height:2px;}
 
-    /* ── NAV ─────────────────────────────────── */
-    nav {
-      position: sticky; top: 0; z-index: 200;
-      background: rgba(15,17,23,.95);
-      border-bottom: 1px solid var(--border);
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
-      height: 50px;
-      display: flex; align-items: center;
-      padding: 0 1.5rem; gap: 1.75rem;
-      overflow-x: auto; white-space: nowrap;
+    .check-btn{
+      position:absolute;top:2px;right:2px;
+      width:14px;height:14px;border-radius:50%;
+      border:1.5px solid var(--border);background:transparent;
+      cursor:pointer;font-size:8px;color:transparent;
+      display:flex;align-items:center;justify-content:center;
+      transition:all .12s;z-index:2;line-height:1;
+      padding:0;
     }
-    nav .brand { font-family: var(--font); font-style: italic; color: var(--accent); font-size: 14px; flex-shrink: 0; margin-right: .5rem; }
-    nav a { font-family: var(--sans); font-size: 12.5px; color: var(--muted); text-decoration: none; letter-spacing: .03em; transition: color .15s; }
-    nav a:hover { color: var(--accent); }
+    .check-btn:hover{border-color:var(--wed);color:var(--wed);}
 
-    /* ── HERO ────────────────────────────────── */
-    .hero {
-      max-width: 900px; margin: 0 auto;
-      padding: 4rem 2rem 2.5rem;
-      border-bottom: 1px solid var(--border);
+    /* LEGEND */
+    .legend{display:flex;gap:.75rem;flex-wrap:wrap;margin:.5rem 0;}
+    .legend-item{display:flex;align-items:center;gap:.4rem;font-family:var(--sans);font-size:12px;color:var(--muted);}
+    .legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+    /* WEEKLY REF */
+    .week-ref{display:flex;flex-direction:column;gap:.6rem;margin:1.5rem 0;}
+    .week-ref-row{display:grid;grid-template-columns:130px 1fr;gap:1rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+    .week-ref-day{font-family:var(--sans);font-size:.85rem;font-weight:bold;padding:.75rem 1rem;display:flex;align-items:center;}
+    .week-ref-content{padding:.75rem 1rem;font-size:.85rem;color:var(--muted);border-left:1px solid var(--border);}
+
+    /* MODAL */
+    .modal-overlay{
+      display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);
+      z-index:500;align-items:flex-end;justify-content:center;
+      -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
     }
-    .eyebrow { font-family: var(--sans); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .85rem; }
-    .hero h1 { font-size: 2.5rem; font-weight: normal; line-height: 1.2; margin-bottom: .4rem; }
-    .hero .sub { color: var(--muted); font-style: italic; font-size: 1rem; margin-bottom: 2rem; }
-    .hero-meta { display: flex; gap: 2.5rem; flex-wrap: wrap; }
-    .meta-item .label { font-family: var(--sans); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 2px; }
-    .meta-item { font-family: var(--sans); font-size: 14px; }
-
-    /* ── CONTAINER ───────────────────────────── */
-    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem 5rem; }
-    section { padding: 3rem 0 1.5rem; border-bottom: 1px solid var(--border); }
-    section:last-child { border-bottom: none; }
-    .sec-label { font-family: var(--sans); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; }
-    h2 { font-size: 1.6rem; font-weight: normal; margin-bottom: 1.5rem; }
-    h3 { font-family: var(--sans); font-size: .95rem; font-weight: bold; margin: 2rem 0 .75rem; color: var(--text); }
-
-    /* ── PHASES ──────────────────────────────── */
-    .phases { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 1.5rem 0; }
-    .phase-card { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid; border-radius: 0 0 8px 8px; padding: 1.25rem 1.5rem; }
-    .phase-card.p1 { border-top-color: var(--p1); }
-    .phase-card.p2 { border-top-color: var(--p2); }
-    .phase-card.p3 { border-top-color: var(--p3); }
-    .phase-label { font-family: var(--sans); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
-    .phase-name { font-size: 1.15rem; margin-bottom: .2rem; }
-    .phase-dates { font-family: var(--sans); font-size: 12px; color: var(--muted); margin-bottom: .9rem; }
-    .phase-focus { font-size: .85rem; color: var(--text); line-height: 1.5; margin-bottom: 1rem; }
-    .phase-tempos { display: flex; flex-direction: column; gap: .3rem; }
-    .phase-tempo-row { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
-    .phase-tempo-row span { color: var(--accent); }
-
-    /* ── TEMPO TIMELINE ──────────────────────── */
-    .tempo-timeline { margin: 1.5rem 0; }
-    .t-exercise { margin-bottom: 1.5rem; }
-    .t-exercise-name { font-family: var(--sans); font-size: .85rem; color: var(--muted); margin-bottom: .5rem; }
-    .t-track { position: relative; height: 36px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; display: flex; align-items: center; overflow: hidden; }
-    .t-fill { height: 100%; display: flex; align-items: center; padding: 0 .75rem; font-family: var(--mono); font-size: .78rem; color: #000; font-weight: bold; border-radius: 6px 0 0 6px; white-space: nowrap; overflow: hidden; }
-    .t-fill.p1c { background: var(--p1); }
-    .t-fill.p2c { background: var(--p2); }
-    .t-fill.p3c { background: var(--p3); }
-    .t-marker { position: absolute; display: flex; flex-direction: column; align-items: center; top: 0; bottom: 0; }
-    .t-marker-line { width: 2px; height: 100%; background: var(--bg); }
-    .t-label { position: absolute; bottom: -20px; font-family: var(--mono); font-size: .72rem; color: var(--muted); white-space: nowrap; transform: translateX(-50%); }
-
-    /* ── CALENDAR ────────────────────────────── */
-    .cal-wrap { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin: 1.5rem 0; }
-    .cal-month { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-    .cal-month-header { background: var(--surface2); padding: .75rem 1rem; font-family: var(--sans); font-size: .9rem; font-weight: bold; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .cal-phase-badge { font-size: 10px; padding: .2rem .5rem; border-radius: 10px; font-weight: normal; letter-spacing: .05em; }
-    .cal-dow-row { display: grid; grid-template-columns: repeat(7,1fr); }
-    .cal-dow { font-family: var(--sans); font-size: 10px; text-align: center; padding: .4rem 0; color: var(--muted); letter-spacing: .05em; border-bottom: 1px solid var(--border); }
-    .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); }
-    .cal-day {
-      aspect-ratio: 1;
-      padding: 3px;
-      border: .5px solid var(--border);
-      cursor: pointer;
-      transition: background .12s;
-      display: flex; flex-direction: column; justify-content: space-between;
-      position: relative; overflow: hidden;
+    .modal-overlay.open{display:flex;}
+    .modal{
+      background:var(--surface);border:1px solid var(--border);border-radius:14px 14px 0 0;
+      width:100%;max-width:640px;max-height:85vh;overflow-y:auto;
+      padding:0 0 2rem;
+      animation:slideUp .2s ease-out;
     }
-    .cal-day:hover { background: var(--surface2); }
-    .cal-day.empty { cursor: default; background: transparent; }
-    .cal-day.empty:hover { background: transparent; }
-    .cal-day.past { opacity: .45; }
-    .cal-day.today { background: rgba(201,168,76,.12) !important; outline: 1.5px solid var(--accent); outline-offset: -1.5px; }
-    .cal-day.today .cal-daynum { color: var(--accent); }
-    .cal-daynum { font-family: var(--sans); font-size: 11px; font-weight: bold; line-height: 1; padding: 2px 3px; }
-    .cal-theme-dot { width: 5px; height: 5px; border-radius: 50%; margin: 0 auto 3px; }
-    .cal-theme-label { font-family: var(--sans); font-size: 8px; text-align: center; line-height: 1.2; color: var(--muted); display: none; }
-    .cal-phase-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; }
+    @keyframes slideUp{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+    .modal-handle{display:flex;justify-content:center;padding:.75rem 0 .5rem;}
+    .modal-handle span{width:36px;height:4px;background:var(--border);border-radius:2px;}
+    .modal-header{padding:.5rem 1.75rem 1.25rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+    .modal-date{font-size:1.3rem;}
+    .modal-date-sub{font-family:var(--sans);font-size:12px;color:var(--muted);margin-top:.2rem;}
+    .modal-close{background:var(--surface2);border:1px solid var(--border);border-radius:50%;width:28px;height:28px;
+      cursor:pointer;font-family:var(--sans);font-size:14px;color:var(--muted);flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;transition:color .15s;}
+    .modal-close:hover{color:var(--text);}
+    .modal-body{padding:1.25rem 1.75rem 0;}
+    .modal-theme-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .75rem;border-radius:20px;font-family:var(--sans);font-size:12px;margin-bottom:1.25rem;}
+    .modal-phase{font-family:var(--sans);font-size:12px;color:var(--muted);margin-bottom:1.25rem;}
+    .modal-phase span{color:var(--text);}
 
-    /* ── LEGEND ──────────────────────────────── */
-    .legend { display: flex; gap: .75rem; flex-wrap: wrap; margin: 1.5rem 0; }
-    .legend-item { display: flex; align-items: center; gap: .4rem; font-family: var(--sans); font-size: 12px; color: var(--muted); }
-    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .block{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;margin-bottom:.75rem;}
+    .block-time{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:.35rem;}
+    .block-name{font-family:var(--sans);font-size:.85rem;font-weight:bold;color:var(--accent);margin-bottom:.5rem;}
+    .block.routine .block-name{color:var(--wed);}
+    .block.choir .block-name{color:var(--sat);}
+    .block ul{list-style:none;padding:0;}
+    .block ul li{font-size:.85rem;padding:.2rem 0;color:var(--text);display:flex;gap:.5rem;}
+    .block ul li::before{content:'—';color:var(--muted);flex-shrink:0;}
+    .modal-tip{background:rgba(201,168,76,.08);border:1px solid var(--accent-muted);border-radius:8px;padding:.85rem 1.1rem;font-size:.85rem;color:var(--muted);margin-top:1rem;}
+    .modal-tip strong{color:var(--text);}
 
-    /* ── MODAL ───────────────────────────────── */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65);
-      z-index: 500; align-items: flex-end; justify-content: center;
-      -webkit-backdrop-filter: blur(4px);
-      backdrop-filter: blur(4px);
+    .modal-done-btn{
+      display:block;width:100%;padding:.9rem;margin-top:1.25rem;
+      background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+      color:var(--muted);font-family:var(--sans);font-size:.9rem;cursor:pointer;
+      transition:all .15s;text-align:center;
     }
-    .modal-overlay.open { display: flex; }
-    .modal {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 14px 14px 0 0;
-      width: 100%; max-width: 640px; max-height: 85vh; overflow-y: auto;
-      padding: 0 0 2rem;
-      animation: slideUp .2s ease-out;
-    }
-    @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    .modal-handle { display: flex; justify-content: center; padding: .75rem 0 .5rem; }
-    .modal-handle span { width: 36px; height: 4px; background: var(--border); border-radius: 2px; }
-    .modal-header { padding: .5rem 1.75rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-    .modal-date { font-size: 1.3rem; }
-    .modal-date-sub { font-family: var(--sans); font-size: 12px; color: var(--muted); margin-top: .2rem; }
-    .modal-close { background: var(--surface2); border: 1px solid var(--border); border-radius: 50%; width: 28px; height: 28px; cursor: pointer; font-family: var(--sans); font-size: 14px; color: var(--muted); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: color .15s; }
-    .modal-close:hover { color: var(--text); }
-    .modal-body { padding: 1.25rem 1.75rem 0; }
-    .modal-theme-badge { display: inline-flex; align-items: center; gap: .4rem; padding: .3rem .75rem; border-radius: 20px; font-family: var(--sans); font-size: 12px; margin-bottom: 1.25rem; }
-    .modal-phase { font-family: var(--sans); font-size: 12px; color: var(--muted); margin-bottom: 1.25rem; }
-    .modal-phase span { color: var(--text); }
-    .block { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: .75rem; }
-    .block-time { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: .35rem; }
-    .block-name { font-family: var(--sans); font-size: .85rem; font-weight: bold; color: var(--accent); margin-bottom: .5rem; }
-    .block ul { list-style: none; padding: 0; }
-    .block ul li { font-size: .85rem; padding: .2rem 0; color: var(--text); display: flex; gap: .5rem; }
-    .block ul li::before { content: '—'; color: var(--muted); flex-shrink: 0; }
-    .modal-tip { background: rgba(201,168,76,.08); border: 1px solid var(--accent-muted); border-radius: 8px; padding: .85rem 1.1rem; font-size: .85rem; color: var(--muted); margin-top: 1rem; }
-    .modal-tip strong { color: var(--text); }
+    .modal-done-btn:hover{border-color:var(--wed);color:var(--wed);}
+    .modal-done-btn.is-done{background:rgba(76,175,130,.15);border-color:var(--wed);color:var(--wed);}
 
-    /* ── WEEKLY REF ──────────────────────────── */
-    .week-ref { display: flex; flex-direction: column; gap: .6rem; margin: 1.5rem 0; }
-    .week-ref-row { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    .week-ref-day { font-family: var(--sans); font-size: .85rem; font-weight: bold; padding: .75rem 1rem; display: flex; align-items: center; }
-    .week-ref-content { padding: .75rem 1rem; font-size: .85rem; color: var(--muted); border-left: 1px solid var(--border); }
-
-    /* ── RESPONSIVE ──────────────────────────── */
-    @media (max-width: 700px) {
-      .cal-wrap { grid-template-columns: 1fr; }
-      .phases { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 1.8rem; }
+    /* RESPONSIVE */
+    @media(max-width:700px){
+      .cal-wrap{grid-template-columns:1fr;}
+      .phases{grid-template-columns:1fr;}
+      .hero h1{font-size:1.8rem;}
+      .dist-row{grid-template-columns:100px 1fr 50px;}
     }
   </style>
 </head>
@@ -210,7 +206,6 @@
 
 <div class="container">
 
-  <!-- PHASES -->
   <section id="phases">
     <div class="sec-label">01 — Summer Phases</div>
     <h2>Three phases of progression</h2>
@@ -219,7 +214,7 @@
         <div class="phase-label">Phase 1</div>
         <div class="phase-name">Foundation</div>
         <div class="phase-dates">1 June – 28 June</div>
-        <div class="phase-focus">Establish posture habits and daily routine. Slow tempo fundamentals with focus on ease. Introduce all core materials at comfortable speeds.</div>
+        <div class="phase-focus">Establish the daily routine and posture habits. All fundamentals at comfortable speeds. Daily routine is non-negotiable before any technical work begins.</div>
         <div class="phase-tempos">
           <div class="phase-tempo-row">Remington: 70 → <span>80 bpm</span></div>
           <div class="phase-tempo-row">Chromatic: 60 → <span>70 bpm</span></div>
@@ -230,7 +225,7 @@
         <div class="phase-label">Phase 2</div>
         <div class="phase-name">Building</div>
         <div class="phase-dates">29 June – 26 July</div>
-        <div class="phase-focus">Increase tempos steadily. Develop register connection. Excerpt work ramps up. Maintain ease from Phase 1 while adding complexity.</div>
+        <div class="phase-focus">Increase tempos steadily. Scale work takes priority. Develop register connection. Excerpt work ramps up. Maintain ease from Phase 1 while adding complexity.</div>
         <div class="phase-tempos">
           <div class="phase-tempo-row">Remington: 80 → <span>90 bpm</span></div>
           <div class="phase-tempo-row">Chromatic: 70 → <span>80 bpm</span></div>
@@ -241,7 +236,7 @@
         <div class="phase-label">Phase 3</div>
         <div class="phase-name">Integration</div>
         <div class="phase-dates">27 July – 31 August</div>
-        <div class="phase-focus">Hit all tempo targets. Polish excerpts and recital repertoire. Complete professional prep. Consolidate the whole summer's work.</div>
+        <div class="phase-focus">Hit all tempo targets. Polish excerpts. Recital repertoire consolidation. Complete professional prep. The whole summer's work comes together.</div>
         <div class="phase-tempos">
           <div class="phase-tempo-row">Remington: 90 → <span>100 bpm</span></div>
           <div class="phase-tempo-row">Chromatic: 80 → <span>90 bpm</span></div>
@@ -251,38 +246,63 @@
     </div>
   </section>
 
-  <!-- TEMPO TIMELINE -->
   <section id="tempo">
     <div class="sec-label">02 — Tempo Progression</div>
     <h2>Milestone targets by phase</h2>
     <div class="tempo-timeline" id="tempo-timeline"></div>
+
+    <h3>Weekly practice distribution</h3>
+    <div class="dist-bars">
+      <div class="dist-row">
+        <div class="dist-label">Fundamentals &amp; scales</div>
+        <div class="dist-bar-bg"><div class="dist-bar-fill fill-accent" style="width:75%"></div></div>
+        <div class="dist-pct">75%</div>
+      </div>
+      <div class="dist-row">
+        <div class="dist-label">Orchestral excerpts</div>
+        <div class="dist-bar-bg"><div class="dist-bar-fill fill-blue" style="width:20%"></div></div>
+        <div class="dist-pct">20%</div>
+      </div>
+      <div class="dist-row">
+        <div class="dist-label">Recital repertoire</div>
+        <div class="dist-bar-bg"><div class="dist-bar-fill fill-green" style="width:5%"></div></div>
+        <div class="dist-pct">5%</div>
+      </div>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);">Scales are the main technical work of the summer — not just warm-up. Recital repertoire is maintained, not developed.</p>
   </section>
 
-  <!-- CALENDAR -->
   <section id="calendar">
     <div class="sec-label">03 — Summer Calendar</div>
     <h2>Click any day to see the full practice plan</h2>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;">Tap the circle in the top-right corner of a day to mark it complete. Your progress is saved in this browser.</p>
+
+    <div class="cal-progress">
+      <div class="cal-prog-item"><span class="prog-label">June</span><span class="prog-count" id="prog-june">—</span></div>
+      <div class="cal-prog-item"><span class="prog-label">July</span><span class="prog-count" id="prog-july">—</span></div>
+      <div class="cal-prog-item"><span class="prog-label">August</span><span class="prog-count" id="prog-aug">—</span></div>
+      <div class="cal-prog-item"><span class="prog-label">Summer total</span><span class="prog-count" id="prog-total">—</span></div>
+    </div>
 
     <div class="legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--mon)"></div>Monday — Recovery & musicianship</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--tue)"></div>Tuesday — Coordination & articulation</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--wed)"></div>Wednesday — Register & flexibility</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--mon)"></div>Monday — Recovery &amp; musicianship</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--tue)"></div>Tuesday — Coordination &amp; articulation</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--wed)"></div>Wednesday — Register &amp; flexibility</div>
       <div class="legend-item"><div class="legend-dot" style="background:var(--thu)"></div>Thursday — Excerpts</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--fri)"></div>Friday — Recital repertoire</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--fri)"></div>Friday — Scales &amp; repertoire</div>
       <div class="legend-item"><div class="legend-dot" style="background:var(--sat)"></div>Saturday — Consolidation</div>
       <div class="legend-item"><div class="legend-dot" style="background:var(--sun)"></div>Sunday — Rest</div>
     </div>
-
-    <div class="legend" style="margin-top: .5rem;">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--p1); border-radius:2px; width:18px; height:6px;"></div>Phase 1: Foundation</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--p2); border-radius:2px; width:18px; height:6px;"></div>Phase 2: Building</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--p3); border-radius:2px; width:18px; height:6px;"></div>Phase 3: Integration</div>
+    <div class="legend" style="margin-top:.5rem;">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--p1);border-radius:2px;width:18px;height:6px;"></div>Phase 1: Foundation</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--p2);border-radius:2px;width:18px;height:6px;"></div>Phase 2: Building</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--p3);border-radius:2px;width:18px;height:6px;"></div>Phase 3: Integration</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--wed);border-radius:2px;width:18px;height:6px;"></div>Completed</div>
     </div>
 
     <div class="cal-wrap" id="cal-wrap"></div>
   </section>
 
-  <!-- WEEKLY REFERENCE -->
   <section id="weekly">
     <div class="sec-label">04 — Weekly Guide</div>
     <h2>Each day's purpose and blocks</h2>
@@ -307,284 +327,322 @@
 </div>
 
 <script>
-  const TODAY = new Date(2026, 5, 4); // June 4, 2026
+  const TODAY = new Date(2026, 5, 4);
+  const STORAGE_KEY = 'lkpractice2026';
 
   const DOW_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const DOW_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
   const THEMES = {
-    0: { name: 'Rest', color: 'var(--sun)', short: 'Rest' },
-    1: { name: 'Recovery & Musicianship', color: 'var(--mon)', short: 'Recov' },
-    2: { name: 'Coordination & Articulation', color: 'var(--tue)', short: 'Coord' },
-    3: { name: 'Register & Flexibility', color: 'var(--wed)', short: 'Regis' },
-    4: { name: 'Excerpts', color: 'var(--thu)', short: 'Excpt' },
-    5: { name: 'Recital Repertoire', color: 'var(--fri)', short: 'Recit' },
-    6: { name: 'Consolidation', color: 'var(--sat)', short: 'Consol' },
+    0:{name:'Rest',color:'var(--sun)'},
+    1:{name:'Recovery & Musicianship',color:'var(--mon)'},
+    2:{name:'Coordination & Articulation',color:'var(--tue)'},
+    3:{name:'Register & Flexibility',color:'var(--wed)'},
+    4:{name:'Excerpts',color:'var(--thu)'},
+    5:{name:'Scales & Repertoire',color:'var(--fri)'},
+    6:{name:'Consolidation',color:'var(--sat)'},
   };
 
   const PHASES = [
-    { name: 'Foundation', start: new Date(2026,5,1),  end: new Date(2026,5,28), color: 'var(--p1)', cssVar: '--p1',
-      remington: '70→80', chromatic: '60→70', lipslurs: '30→40' },
-    { name: 'Building',   start: new Date(2026,5,29), end: new Date(2026,6,26), color: 'var(--p2)', cssVar: '--p2',
-      remington: '80→90', chromatic: '70→80', lipslurs: '40→50' },
-    { name: 'Integration',start: new Date(2026,6,27), end: new Date(2026,7,31), color: 'var(--p3)', cssVar: '--p3',
-      remington: '90→100', chromatic: '80→90', lipslurs: '50→60' },
+    {name:'Foundation',start:new Date(2026,5,1), end:new Date(2026,5,28), color:'var(--p1)',cssVar:'--p1',remington:'70→80',chromatic:'60→70',lipslurs:'30→40'},
+    {name:'Building',  start:new Date(2026,5,29),end:new Date(2026,6,26), color:'var(--p2)',cssVar:'--p2',remington:'80→90',chromatic:'70→80',lipslurs:'40→50'},
+    {name:'Integration',start:new Date(2026,6,27),end:new Date(2026,7,31),color:'var(--p3)',cssVar:'--p3',remington:'90→100',chromatic:'80→90',lipslurs:'50→60'},
   ];
 
-  function getPhase(date) {
-    const d = date.getTime();
-    for (let i = 0; i < PHASES.length; i++) {
-      if (d >= PHASES[i].start.getTime() && d <= PHASES[i].end.getTime()) return i;
-    }
+  function getPhase(date){
+    const d=date.getTime();
+    for(let i=0;i<PHASES.length;i++){if(d>=PHASES[i].start.getTime()&&d<=PHASES[i].end.getTime())return i;}
     return -1;
   }
 
-  // ── DAY DETAIL CONTENT ──────────────────────────────────
+  // ── DAILY ROUTINE (prepended to every practice day) ─────
+  const DAILY_ROUTINE = {time:'10:30–11:15',name:'Daily routine',cls:'routine',items:[
+    '10 min — Alexander Technique / mind-body mapping: scan upward from the feet, release jaw, neck, and shoulder tension before touching the horn',
+    '10 min — Breathing exercises: full ribcage expansion, resist the urge to tense on the inhale, feel the breath drop the body',
+    '10 min — Buzzing (mouthpiece only): long tones and simple descending lines — feel the vibration without instrument resistance',
+    '15 min — Slow descending scales: full range, very slow, one note per bow-length of air, even tone across all registers',
+  ]};
+
+  // ── DAY PLANS ────────────────────────────────────────────
   const DAY_PLANS = {
-    0: { // Sunday
-      blocks: [
-        { time: 'All day', name: 'Rest', items: ['No instrument today — this is non-negotiable', 'Body and embouchure need full recovery', 'Protect Sunday to sustain the whole week'] },
-        { time: 'Optional — 20 min', name: 'Mental practice only', items: ['Listen to a recording of your recital repertoire', 'Visualise difficult passages without playing', 'Read through a score or Bordogni study away from the horn'] },
-      ],
-      tip: 'Recovery is training. Playing through fatigue builds bad tension habits, not skill.'
-    },
-    1: { // Monday
-      blocks: [
-        { time: '10:30–11:00', name: 'Gentle warm-up', items: ['Breathing only — no mouthpiece, focus on ribcage expansion', 'Long tones on Bb1 and F2, very soft, no pressure', 'Posture check: feet flat, weight balanced, instrument balanced — not gripped'] },
-        { time: '11:00–11:30', name: 'Bordogni (slow and easy)', items: ['Choose Vocalise No. 1 or 2', 'Sing the line before picking up the horn', 'Play at 60% speed — the goal is free tone, not speed', 'Stop if tension arrives; breathe and reset'] },
-        { time: '11:30–12:00', name: 'Ottman sight-singing', items: ['Open to any chapter and sing 3–4 exercises by sight', 'Tap the pulse with your foot', 'Mark any pitch you had to correct and sing it again', 'No instrument — ears only'] },
-        { time: 'Afternoon', name: 'Ear training and transcription', items: ['Transcribe 5–10 bars of a trombone excerpt by ear', 'Write it out on paper, then check against the score', 'Ear training app for 15 minutes (intervals, chords)', 'Physical recovery: run, walk, or stretch'] },
-      ],
-      tip: 'Monday sets the physiological baseline for the week. A rushed Monday creates tension that compounds through Friday.'
-    },
-    2: { // Tuesday
-      blocks: [
-        { time: '10:30–11:00', name: 'Warm-up with Remington', items: ["Remington scale patterns at 70% of current working tempo", 'Focus: slide moves with the air, not ahead of it', 'Feel the weight of the slide — fluid, not forced'] },
-        { time: '11:00–11:30', name: 'Arban — articulation', items: ['Single tongue studies pp.1–8', 'Slow metronome first: hear each attack start before it happens', 'Every attack: open air stream, then tongue — not tongue first', 'If a note chips, reduce tempo by 10 bpm and find the cause'] },
-        { time: '11:30–12:00', name: 'Remington patterns — tempo push', items: ['Current working tempo → try +4 bpm', 'Only push if tone and coordination stayed stable in warm-up', 'Three clean repetitions at new tempo = it counts', 'If unstable: drop back, do not force'] },
-        { time: '12:00–12:30', name: 'Chromatic scale work', items: ['Chromatic scales, full range', 'Even note length and slide movement', 'Record 30 seconds; listen for unevenness in the scale'] },
-        { time: 'Afternoon', name: 'Short recording review', items: ['Listen to the recording from the morning block', 'Note one specific thing that improved', 'Note one thing to fix tomorrow'] },
-      ],
-      tip: 'On articulation: tongue placement should feel like releasing a note, not blocking it. The air is always moving.'
-    },
-    3: { // Wednesday
-      blocks: [
-        { time: '10:30–11:00', name: 'Long tones — full range', items: ['Start on Bb1, rise chromatically to Bb3', 'Each note: 8 full counts, steady air, no crescendo', 'Use a drone (pedal Bb or F) to check tuning on every note', 'Stop if embouchure tightens at the top — breathe, release, try again'] },
-        { time: '11:00–11:30', name: 'Brad Edwards lip slurs', items: ['Sets 1–3 from the method', 'Current working tempo → aim for comfort, not speed', 'At each register break: relax the aperture, do not pinch', 'Sing the pattern first if the slur breaks down'] },
-        { time: '11:30–12:00', name: 'Bordogni — register-spanning study', items: ['Choose a study that crosses the register break (e.g. No.5, No.12)', 'Play at half tempo', 'Sing through the transition before playing it', 'Stop and breathe at any point where tension arrives'] },
-        { time: '12:00–12:30', name: 'Drone and pitch stability', items: ['Play a Bb drone (phone, tuner, or pedal)', 'Improvise long-note lines around it', 'No metronome — feel the resonance', 'Record 2 minutes; listen for pitch drift at register transitions'] },
-        { time: 'Afternoon', name: 'Record for tension check', items: ['Set up a camera or phone facing you', 'Play the lip slur set once from the morning', 'Watch it back: look for jaw tightening, neck tension, shoulder rise', 'Make one physical note for next week'] },
-      ],
-      tip: 'Register connection breaks are almost always a breathing problem, not an embouchure problem. Find the breath first.'
-    },
-    4: { // Thursday
-      blocks: [
-        { time: '10:30–11:00', name: 'Short warm-up', items: ['Light Remington at 70% tempo', 'One Bordogni study at half speed — keep it easy', 'This is maintenance, not development'] },
-        { time: '11:00–11:30', name: 'Orchestral excerpt 1', items: ['Listen to a professional recording first, twice', 'Read through the excerpt slowly without stopping', 'Identify the two hardest bars', 'Work those two bars in isolation: slow, then build'] },
-        { time: '11:30–12:00', name: 'Orchestral excerpt 2', items: ['Different excerpt — vary the technical demand from excerpt 1', 'Score study first: find all the dynamic markings and context', 'Play with a recording to practise ensemble placement', 'End with a full read-through at tempo'] },
-        { time: '12:00–12:30', name: 'Listening and score study', items: ['Choose one full orchestral movement containing your excerpt', 'Follow the score while listening', 'Mark anything you did not expect harmonically or rhythmically'] },
-        { time: 'Afternoon', name: 'Video study', items: ['Watch a professional bass trombonist perform one of your excerpts', 'Observe: physical setup, breathing, slide motion, posture under pressure', 'Write down one thing to try tomorrow'] },
-      ],
-      tip: 'Know the orchestral context, not just your part. Excerpt preparation is ensemble preparation.'
-    },
-    5: { // Friday
-      blocks: [
-        { time: '10:30–11:00', name: 'Sing through the piece', items: ['Away from the instrument entirely', 'Sing the whole recital piece from memory if possible', 'If you forget a pitch, hum the shape — do not stop', 'This builds the internal model the instrument follows'] },
-        { time: '11:00–11:30', name: 'Full run-through', items: ['No stopping — play the piece from start to finish', 'Commit to every musical decision even when a note is missed', 'The goal is continuity and ownership, not perfection'] },
-        { time: '11:30–12:00', name: 'Problem passage work', items: ['Identify 2–3 bars from the run-through that broke down', 'Practise each in isolation: slow, then build with metronome', 'End by playing the passage in context (bars before + after)'] },
-        { time: '12:00–12:30', name: 'Memorisation', items: ['Cover the page. Play the opening 16 bars from memory.', 'If it breaks down, look, memorise, cover, repeat', 'End of summer goal: full movement from memory'] },
-        { time: 'Afternoon', name: 'Recording', items: ['Record a full run-through', 'Listen back before the weekend — note one musical improvement', 'Note one technical problem to bring to next week'] },
-      ],
-      tip: 'Musical ownership means knowing why every note sounds the way it does. Technique serves that. Not the other way around.'
-    },
-    6: { // Saturday
-      blocks: [
-        { time: '10:30–11:00', name: 'Week review', items: ['Play the current Remington tempo — did it hold?', 'Play the current lip slur tempo — any tension?', 'Honest self-assessment: what improved this week?'] },
-        { time: '11:00–11:30', name: 'Mixed fundamentals', items: ['One Remington run at working tempo', 'One Bordogni study — musical, relaxed', 'One Arban page — light and clean'] },
-        { time: '11:30–12:30', name: 'Recording session', items: ['Record the three tempo targets (Remington, Chromatic, Lip slurs)', 'Record a full run of recital repertoire', 'Save the file with today\'s date — this is your progress log'] },
-        { time: '1:00–6:00 PM', name: 'Vox Camerata Community Choir', items: ['Fixed weekly commitment — do not schedule practice here', 'This counts as ensemble ear training and musicianship', 'Note anything from rehearsal that connects to your solo work'] },
-        { time: 'After 6:00 PM', name: 'Evening wind-down', items: ['Protect this time — you\'ve had a full day', 'Professional development only if energy allows (CV, bio, LinkedIn)', 'No heavy technical practice after choir'] },
-      ],
-      tip: 'The Saturday recording is your progress document. Date every file. Finish it before 1pm — choir starts then.'
-    },
+    0:{blocks:[
+      {time:'All day',name:'Rest',items:['No instrument — this is non-negotiable','Body and embouchure need full recovery','Protect Sunday to sustain the whole week']},
+      {time:'Optional — 20 min',name:'Mental practice only',items:['Listen to a recording of your recital repertoire','Visualise difficult passages without playing','Read a score or Bordogni study away from the horn']},
+    ],tip:'Recovery is training. Playing through fatigue builds bad tension habits, not skill.'},
+
+    1:{blocks:[
+      DAILY_ROUTINE,
+      {time:'11:15–11:45',name:'Bordogni (slow and easy)',items:['Choose Vocalise No.1 or 2','Sing the line before picking up the horn','Play at 60% speed — free tone, not speed','Stop if tension arrives; breathe and reset']},
+      {time:'11:45–12:15',name:'Ottman sight-singing',items:['Open to any chapter, sing 3–4 exercises by sight','Tap the pulse with your foot','Mark any pitch you corrected; sing it again','No instrument — ears only']},
+      {time:'Afternoon',name:'Ear training and transcription',items:['Transcribe 5–10 bars of a trombone excerpt by ear','Write it out, then check against the score','Ear training app for 15 minutes (intervals, chords)','Physical recovery: run, walk, or stretch']},
+    ],tip:'Monday sets the physiological baseline for the week. A rushed Monday creates tension that compounds through Friday.'},
+
+    2:{blocks:[
+      DAILY_ROUTINE,
+      {time:'11:15–11:45',name:'Scales — working tempo',items:['Remington scale patterns at current working tempo','Push by +4 bpm only if tone and coordination stayed stable','Three clean repetitions at new tempo = it counts','If unstable: drop back, do not force']},
+      {time:'11:45–12:15',name:'Chromatic scales + Arban articulation',items:['Chromatic scales full range — even spacing, clean slide','Arban single tongue studies pp.1–8','Each attack: open air stream, then tongue — not tongue first','Record 30 seconds; listen for unevenness']},
+      {time:'12:15–12:45',name:'Scale extension and coordination',items:['Scales in thirds, fourths, and arpeggios','Work at 70% of Remington tempo to maintain quality','Focus: slide moves with the air, not ahead of it']},
+      {time:'Afternoon',name:'Short recording review',items:['Listen back to the morning recording','Note one improvement and one thing to fix tomorrow']},
+      {time:'7:30–10:30 PM',name:'Vox Camerata Chamber Singers rehearsal',cls:'choir',items:['Fixed weekly commitment — do not schedule practice here','This counts as ensemble ear training and sight-reading','Note anything from rehearsal that connects to your solo work']},
+    ],tip:'On articulation: tongue placement should feel like releasing a note, not blocking it. The air is always moving.'},
+
+    3:{blocks:[
+      DAILY_ROUTINE,
+      {time:'11:15–11:45',name:'Scales — register-spanning',items:['Full-range scale across the register break','Slow — feel the transition, do not grip','At each break: relax the aperture, let the air drive the change']},
+      {time:'11:45–12:15',name:'Brad Edwards lip slurs',items:['Sets 1–3 at current working tempo','Sing the pattern first if the slur breaks down','Aim for comfort and ease, not speed']},
+      {time:'12:15–12:45',name:'Bordogni + drone work',items:['Choose a study that crosses the register break (e.g. No.5, No.12)','Play with a sustained drone to check pitch stability','Record 2 minutes; listen for pitch drift at register transitions']},
+      {time:'Afternoon',name:'Tension check recording',items:['Set up a camera facing you','Play the lip slur set once','Watch it back: jaw, neck, shoulder — look for where tension enters']},
+    ],tip:'Register connection breaks are almost always a breathing problem, not an embouchure problem. Find the breath first.'},
+
+    4:{blocks:[
+      DAILY_ROUTINE,
+      {time:'11:15–11:45',name:'Scales — maintenance',items:['Remington at current tempo (maintenance, not push)','Chromatic scales — clean and even','Keep it light: this is not the day to push tempos']},
+      {time:'11:45–12:15',name:'Orchestral excerpt 1',items:['Listen to a professional recording first, twice','Read slowly without stopping','Identify the two hardest bars; work them in isolation']},
+      {time:'12:15–12:45',name:'Orchestral excerpt 2',items:['Different excerpt — vary the technical demand','Score study first: dynamics, context, ensemble role','End with a full read-through at tempo']},
+      {time:'Afternoon',name:'Score study and video',items:['Follow the score of a full movement containing your excerpt','Watch a professional perform one excerpt — observe physical setup']},
+    ],tip:'Know the orchestral context, not just your part. Excerpt preparation is ensemble preparation.'},
+
+    5:{blocks:[
+      DAILY_ROUTINE,
+      {time:'11:15–12:00',name:'Scales — extended session',items:['45 min dedicated to scale work','Remington, chromatic, thirds, arpeggios — work through the full set','This is the main technical block of Friday — not a warm-up','Push tempo carefully; stop if tone suffers']},
+      {time:'12:00–12:30',name:'Recital repertoire — maintenance',items:['One full run-through, no stopping','Sing the line first if a passage feels uncertain','The goal is ownership, not perfection']},
+      {time:'Afternoon',name:'Memorisation and interpretation',items:['Work one problem passage in isolation (slow → build)','Memorise the opening 16 bars; cover the page and test yourself','Record the run-through; listen back']},
+    ],tip:'Scales are Friday\'s main work. Recital repertoire is maintained here, not developed — that comes from the rest of the week.'},
+
+    6:{blocks:[
+      DAILY_ROUTINE,
+      {time:'11:15–11:45',name:'Week review',items:['Play the current Remington tempo — did it hold?','Play the current lip slur tempo — any tension?','Honest self-assessment: what improved this week?']},
+      {time:'11:45–12:30',name:'Recording session',items:['Record the three tempo targets (Remington, Chromatic, Lip slurs)','Record a full run of recital repertoire','Save with today\'s date — this is your progress log']},
+      {time:'1:00–6:00 PM',name:'Vox Camerata Community Choir',cls:'choir',items:['Fixed weekly commitment — do not schedule practice here','This counts as ensemble ear training and musicianship','Note anything from rehearsal that connects to your solo work']},
+      {time:'After 6:00 PM',name:'Evening wind-down',items:['Protect this time — you\'ve had a full day','Professional development only if energy allows (CV, bio, LinkedIn)','No heavy technical practice after choir']},
+    ],tip:'The Saturday recording is your progress document. Date every file. Finish it before 1pm — choir starts then.'},
   };
 
-  // ── TEMPO TIMELINE ──────────────────────────────────────
-  function buildTempoTimeline() {
-    const exercises = [
-      { name: 'Remington scale patterns', start: 70, p1: 80, p2: 90, target: 100 },
-      { name: 'Chromatic scales',         start: 60, p1: 70, p2: 80, target: 90  },
-      { name: 'Lip slurs (2-oct sextuplets)', start: 30, p1: 40, p2: 50, target: 60 },
+  // ── CURRENT OPEN DAY (for modal done button) ─────────────
+  let openDayRef = null;
+
+  // ── STORAGE ──────────────────────────────────────────────
+  function getStorage(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');}catch{return {};}}
+  function saveStorage(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));}
+  function dayKey(y,m,d){return `${y}-${m}-${d}`;}
+  function isDone(y,m,d){return !!getStorage()[dayKey(y,m,d)];}
+
+  function toggleDone(y,m,d,e){
+    if(e)e.stopPropagation();
+    const data=getStorage(),key=dayKey(y,m,d);
+    data[key]=!data[key];
+    if(!data[key])delete data[key];
+    saveStorage(data);
+    refreshDay(y,m,d,!!data[key]);
+    refreshProgress();
+    if(openDayRef&&openDayRef[0]===y&&openDayRef[1]===m&&openDayRef[2]===d){
+      updateModalDoneBtn(!!data[key]);
+    }
+  }
+
+  function refreshDay(y,m,d,done){
+    const el=document.getElementById(`day-${y}-${m}-${d}`);
+    if(!el)return;
+    el.classList.toggle('done',done);
+  }
+
+  function refreshProgress(){
+    const months=[
+      {y:2026,m:5,days:30,id:'prog-june'},
+      {y:2026,m:6,days:31,id:'prog-july'},
+      {y:2026,m:7,days:31,id:'prog-aug'},
     ];
-    const el = document.getElementById('tempo-timeline');
-    exercises.forEach(ex => {
-      const pct1 = ((ex.p1 - ex.start) / (ex.target - ex.start)) * 100;
-      const pct2 = ((ex.p2 - ex.start) / (ex.target - ex.start)) * 100;
-      el.innerHTML += `
+    let total=0,maxTotal=0;
+    months.forEach(mo=>{
+      let count=0;
+      for(let d=1;d<=mo.days;d++){if(isDone(mo.y,mo.m,d))count++;}
+      total+=count;maxTotal+=mo.days;
+      const el=document.getElementById(mo.id);
+      if(el)el.textContent=`${count}/${mo.days}`;
+    });
+    const te=document.getElementById('prog-total');
+    if(te)te.textContent=`${total}/${maxTotal}`;
+  }
+
+  // ── MODAL DONE BUTTON ────────────────────────────────────
+  function updateModalDoneBtn(done){
+    const btn=document.getElementById('modal-done-btn');
+    if(!btn)return;
+    btn.textContent=done?'Completed ✓ — tap to undo':'Mark this day complete';
+    btn.classList.toggle('is-done',done);
+  }
+
+  function modalToggleDone(){
+    if(!openDayRef)return;
+    toggleDone(openDayRef[0],openDayRef[1],openDayRef[2],null);
+  }
+
+  // ── TEMPO TIMELINE ───────────────────────────────────────
+  function buildTempoTimeline(){
+    const exercises=[
+      {name:'Remington scale patterns',start:70,p1:80,p2:90,target:100},
+      {name:'Chromatic scales',start:60,p1:70,p2:80,target:90},
+      {name:'Lip slurs (2-oct sextuplets)',start:30,p1:40,p2:50,target:60},
+    ];
+    const el=document.getElementById('tempo-timeline');
+    exercises.forEach(ex=>{
+      const pct1=((ex.p1-ex.start)/(ex.target-ex.start))*100;
+      const pct2=((ex.p2-ex.start)/(ex.target-ex.start))*100;
+      el.innerHTML+=`
         <div class="t-exercise">
           <div class="t-exercise-name">${ex.name}</div>
-          <div style="position:relative; padding-bottom:22px;">
+          <div style="position:relative;padding-bottom:22px;">
             <div class="t-track">
               <div class="t-fill p3c" style="width:100%;">${ex.target} bpm</div>
-              <div class="t-fill p2c" style="width:${pct2}%; position:absolute; left:0;">${ex.p2}</div>
-              <div class="t-fill p1c" style="width:${pct1}%; position:absolute; left:0;">${ex.p1}</div>
-              <div style="position:absolute; left:0; height:100%; width:${((0)/(ex.target-ex.start))*100}%; background:var(--surface2); display:flex; align-items:center; padding-left:.75rem; font-family:var(--mono); font-size:.78rem; color:var(--muted);">${ex.start}</div>
+              <div class="t-fill p2c" style="width:${pct2}%;position:absolute;left:0;">${ex.p2}</div>
+              <div class="t-fill p1c" style="width:${pct1}%;position:absolute;left:0;">${ex.p1}</div>
             </div>
-            <div style="position:absolute; bottom:2px; left:0; width:100%; display:flex; justify-content:space-between; font-family:var(--mono); font-size:10px; color:var(--muted);">
-              <span style="color:var(--muted)">Start: ${ex.start}</span>
+            <div style="position:absolute;bottom:2px;left:0;width:100%;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--muted);">
+              <span>Start: ${ex.start}</span>
               <span style="color:var(--p1)">Phase 1: ${ex.p1}</span>
               <span style="color:var(--p2)">Phase 2: ${ex.p2}</span>
               <span style="color:var(--p3)">Target: ${ex.target}</span>
             </div>
           </div>
-        </div>
-      `;
+        </div>`;
     });
   }
 
-  // ── CALENDAR ────────────────────────────────────────────
-  function buildCalendar() {
-    const months = [
-      { year: 2026, month: 5, label: 'June 2026' },
-      { year: 2026, month: 6, label: 'July 2026' },
-      { year: 2026, month: 7, label: 'August 2026' },
+  // ── CALENDAR ─────────────────────────────────────────────
+  function buildCalendar(){
+    const months=[
+      {year:2026,month:5,label:'June 2026'},
+      {year:2026,month:6,label:'July 2026'},
+      {year:2026,month:7,label:'August 2026'},
     ];
+    const wrap=document.getElementById('cal-wrap');
+    months.forEach(({year,month,label})=>{
+      const firstDay=new Date(year,month,1).getDay();
+      const daysInMonth=new Date(year,month+1,0).getDate();
+      const pi=getPhase(new Date(year,month,15));
 
-    const wrap = document.getElementById('cal-wrap');
-    months.forEach(({ year, month, label }) => {
-      const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      let html=`<div class="cal-month">`;
+      html+=`<div class="cal-month-header"><span>${label}</span>`;
+      if(pi>=0)html+=`<span class="cal-phase-badge" style="background:${PHASES[pi].color};color:#000;">${PHASES[pi].name}</span>`;
+      html+=`</div>`;
 
-      // Dominant phase for header badge
-      const midDate = new Date(year, month, 15);
-      const pi = getPhase(midDate);
+      html+=`<div class="cal-dow-row">`;
+      ['S','M','T','W','T','F','S'].forEach(d=>{html+=`<div class="cal-dow">${d}</div>`;});
+      html+=`</div><div class="cal-grid">`;
 
-      let html = `<div class="cal-month">`;
-      html += `<div class="cal-month-header"><span>${label}</span>`;
-      if (pi >= 0) html += `<span class="cal-phase-badge" style="background:${PHASES[pi].color};color:#000;">${PHASES[pi].name}</span>`;
-      html += `</div>`;
+      for(let i=0;i<firstDay;i++)html+=`<div class="cal-day empty"></div>`;
 
-      html += `<div class="cal-dow-row">`;
-      ['S','M','T','W','T','F','S'].forEach(d => { html += `<div class="cal-dow">${d}</div>`; });
-      html += `</div><div class="cal-grid">`;
+      for(let day=1;day<=daysInMonth;day++){
+        const date=new Date(year,month,day);
+        const dow=date.getDay();
+        const theme=THEMES[dow];
+        const phaseIdx=getPhase(date);
+        const phaseColor=phaseIdx>=0?`var(${PHASES[phaseIdx].cssVar})`:'transparent';
+        const isToday=date.toDateString()===TODAY.toDateString();
+        const isPast=date<TODAY&&!isToday;
+        const done=isDone(year,month,day);
 
-      // Empty cells before first day
-      for (let i = 0; i < firstDay; i++) {
-        html += `<div class="cal-day empty"></div>`;
+        let cls='cal-day';
+        if(isPast)cls+=' past';
+        if(isToday)cls+=' today';
+        if(done)cls+=' done';
+
+        html+=`<div class="${cls}" id="day-${year}-${month}-${day}" onclick="openDay(${year},${month},${day})" title="${DOW_NAMES[dow]}">`;
+        html+=`<div class="cal-daynum">${day}</div>`;
+        html+=`<button type="button" class="check-btn" onclick="toggleDone(${year},${month},${day},event)" title="${done?'Mark as not done':'Mark as done'}">✓</button>`;
+        html+=`<div class="cal-theme-dot" style="background:${theme.color}"></div>`;
+        html+=`<div class="cal-phase-bar" style="background:${phaseColor};opacity:.6;"></div>`;
+        html+=`</div>`;
       }
 
-      for (let day = 1; day <= daysInMonth; day++) {
-        const date = new Date(year, month, day);
-        const dow = date.getDay();
-        const theme = THEMES[dow];
-        const phaseIdx = getPhase(date);
-        const phaseColor = phaseIdx >= 0 ? `var(${PHASES[phaseIdx].cssVar})` : 'transparent';
-
-        const isToday = date.toDateString() === TODAY.toDateString();
-        const isPast = date < TODAY && !isToday;
-
-        const classes = ['cal-day', isPast ? 'past' : '', isToday ? 'today' : ''].filter(Boolean).join(' ');
-
-        html += `<div class="${classes}" onclick="openDay(${year},${month},${day})" title="${DOW_NAMES[dow]}: ${theme.name}">`;
-        html += `<div class="cal-daynum">${day}</div>`;
-        html += `<div class="cal-theme-dot" style="background:${theme.color}"></div>`;
-        html += `<div class="cal-phase-bar" style="background:${phaseColor}; opacity:.6;"></div>`;
-        html += `</div>`;
-      }
-
-      html += `</div></div>`;
-      wrap.innerHTML += html;
+      html+=`</div></div>`;
+      wrap.innerHTML+=html;
     });
   }
 
-  // ── MODAL ───────────────────────────────────────────────
-  function openDay(year, month, day) {
-    const date = new Date(year, month, day);
-    const dow = date.getDay();
-    const theme = THEMES[dow];
-    const phaseIdx = getPhase(date);
-    const plan = DAY_PLANS[dow];
+  // ── MODAL ────────────────────────────────────────────────
+  function openDay(y,m,d){
+    const date=new Date(y,m,d);
+    const dow=date.getDay();
+    const theme=THEMES[dow];
+    const phaseIdx=getPhase(date);
+    const plan=DAY_PLANS[dow];
+    const done=isDone(y,m,d);
+    openDayRef=[y,m,d];
 
-    const isToday = date.toDateString() === TODAY.toDateString();
-    const isPast  = date < TODAY && !isToday;
+    const isToday=date.toDateString()===TODAY.toDateString();
+    const isPast=date<TODAY&&!isToday;
 
-    document.getElementById('modal-date').textContent =
-      `${DOW_NAMES[dow]}, ${day} ${MONTH_NAMES[month]} 2026`;
+    document.getElementById('modal-date').textContent=`${DOW_NAMES[dow]}, ${d} ${MONTH_NAMES[m]} 2026`;
+    let sub='';
+    if(isToday)sub='● Today';
+    else if(isPast)sub='Past';
+    if(phaseIdx>=0)sub+=(sub?' · ':'')+`Phase ${phaseIdx+1}: ${PHASES[phaseIdx].name}`;
+    document.getElementById('modal-date-sub').textContent=sub;
 
-    let subText = '';
-    if (isToday) subText = '● Today';
-    else if (isPast) subText = 'Past';
-    if (phaseIdx >= 0) subText += (subText ? ' · ' : '') + `Phase ${phaseIdx + 1}: ${PHASES[phaseIdx].name}`;
-    document.getElementById('modal-date-sub').textContent = subText;
+    let body=`<div class="modal-theme-badge" style="background:${theme.color}20;border:1px solid ${theme.color};color:${theme.color};">${theme.name}</div>`;
 
-    let body = `<div class="modal-theme-badge" style="background:${theme.color}20; border:1px solid ${theme.color}; color:${theme.color};">${theme.name}</div>`;
-
-    if (phaseIdx >= 0) {
-      const p = PHASES[phaseIdx];
-      body += `<div class="modal-phase">Tempo targets this phase — Remington: <span>${p.remington} bpm</span> · Chromatic: <span>${p.chromatic} bpm</span> · Lip slurs: <span>${p.lipslurs} bpm</span></div>`;
+    if(phaseIdx>=0){
+      const p=PHASES[phaseIdx];
+      body+=`<div class="modal-phase">Tempo targets this phase — Remington: <span>${p.remington} bpm</span> · Chromatic: <span>${p.chromatic} bpm</span> · Lip slurs: <span>${p.lipslurs} bpm</span></div>`;
     }
 
-    plan.blocks.forEach(b => {
-      body += `<div class="block">`;
-      body += `<div class="block-time">${b.time}</div>`;
-      body += `<div class="block-name">${b.name}</div>`;
-      body += `<ul>${b.items.map(i => `<li>${i}</li>`).join('')}</ul>`;
-      body += `</div>`;
+    plan.blocks.forEach(b=>{
+      const extraCls=b.cls?` ${b.cls}`:'';
+      body+=`<div class="block${extraCls}">`;
+      body+=`<div class="block-time">${b.time}</div>`;
+      body+=`<div class="block-name">${b.name}</div>`;
+      body+=`<ul>${b.items.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+      body+=`</div>`;
     });
 
-    if (plan.tip) {
-      body += `<div class="modal-tip"><strong>Principle:</strong> ${plan.tip}</div>`;
-    }
+    if(plan.tip)body+=`<div class="modal-tip"><strong>Principle:</strong> ${plan.tip}</div>`;
 
-    document.getElementById('modal-body').innerHTML = body;
+    body+=`<button type="button" id="modal-done-btn" class="modal-done-btn${done?' is-done':''}" onclick="modalToggleDone()">${done?'Completed ✓ — tap to undo':'Mark this day complete'}</button>`;
+
+    document.getElementById('modal-body').innerHTML=body;
     document.getElementById('modal-overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow='hidden';
   }
 
-  function closeModal(e) {
-    if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
-  }
-
-  function closeModalDirect() {
+  function closeModal(e){if(e.target===document.getElementById('modal-overlay'))closeModalDirect();}
+  function closeModalDirect(){
     document.getElementById('modal-overlay').classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.style.overflow='';
+    openDayRef=null;
   }
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalDirect();});
 
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
-
-  // ── WEEKLY REFERENCE ────────────────────────────────────
-  function buildWeekRef() {
-    const days = [
-      { dow: 1, focus: 'Recovery & Musicianship', summary: 'Gentle Bordogni, Ottman sight-singing, ear training, transcription, physical recovery.' },
-      { dow: 2, focus: 'Coordination & Articulation', summary: 'Remington warm-up, Arban single tongue, Remington tempo push, chromatic scales, recording review.' },
-      { dow: 3, focus: 'Register & Flexibility', summary: 'Full-range long tones, Brad Edwards lip slurs, register-spanning Bordogni, drone and pitch stability work.' },
-      { dow: 4, focus: 'Excerpts', summary: 'Two orchestral excerpts with listening and score study. Identify the context around your part.' },
-      { dow: 5, focus: 'Recital Repertoire', summary: 'Sing the piece, full run-through, problem passage isolation, memorisation, end-of-week recording.' },
-      { dow: 6, focus: 'Consolidation + Vox Camerata Choir', summary: 'Morning: week review, mixed fundamentals, dated recording session — all done by 1pm. 1–6pm: Vox Camerata Community Choir (fixed commitment). Evening: wind-down only.' },
-      { dow: 0, focus: 'Rest', summary: 'No instrument. Mental practice only if needed. Protect recovery.' },
+  // ── WEEKLY REFERENCE ─────────────────────────────────────
+  function buildWeekRef(){
+    const days=[
+      {dow:1,focus:'Recovery & Musicianship',summary:'Daily routine (45 min), gentle Bordogni, Ottman sight-singing, ear training, transcription, physical recovery.'},
+      {dow:2,focus:'Coordination & Articulation',summary:'Daily routine (45 min), scales at working tempo, chromatic scales, Arban articulation, scale extension work. Evening: VC Chamber Singers 7:30–10:30 PM.'},
+      {dow:3,focus:'Register & Flexibility',summary:'Daily routine (45 min), register-spanning scales, Brad Edwards lip slurs, Bordogni with drone, tension check recording.'},
+      {dow:4,focus:'Excerpts',summary:'Daily routine (45 min), scale maintenance (light), two orchestral excerpts with listening and score study.'},
+      {dow:5,focus:'Scales & Repertoire',summary:'Daily routine (45 min), extended 45-min scale session (main technical block), recital repertoire maintenance run-through, memorisation.'},
+      {dow:6,focus:'Consolidation + VC Choir',summary:'Daily routine (45 min), week review, recording session — all done before 1pm. 1–6pm: VC Community Choir. Evening: wind-down only.'},
+      {dow:0,focus:'Rest',summary:'No instrument. Mental practice only if needed. Protect recovery completely.'},
     ];
-
-    const el = document.getElementById('week-ref');
-    days.forEach(d => {
-      const theme = THEMES[d.dow];
-      el.innerHTML += `
+    const el=document.getElementById('week-ref');
+    days.forEach(d=>{
+      const theme=THEMES[d.dow];
+      el.innerHTML+=`
         <div class="week-ref-row">
           <div class="week-ref-day" style="color:${theme.color};">${DOW_NAMES[d.dow]}</div>
-          <div class="week-ref-content"><strong style="color:var(--text); font-family:var(--sans); font-size:.85rem;">${d.focus}</strong><br>${d.summary}</div>
-        </div>
-      `;
+          <div class="week-ref-content"><strong style="color:var(--text);font-family:var(--sans);font-size:.85rem;">${d.focus}</strong><br>${d.summary}</div>
+        </div>`;
     });
   }
 
-  // ── TODAY LABEL ─────────────────────────────────────────
-  document.getElementById('today-label').textContent =
+  // ── INIT ─────────────────────────────────────────────────
+  document.getElementById('today-label').textContent=
     `${DOW_NAMES[TODAY.getDay()]}, ${TODAY.getDate()} ${MONTH_NAMES[TODAY.getMonth()]}`;
 
-  // ── INIT ────────────────────────────────────────────────
   buildTempoTimeline();
   buildCalendar();
   buildWeekRef();
+  refreshProgress();
 </script>
 </body>
 </html>
