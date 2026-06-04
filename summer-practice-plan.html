@@ -6,12 +6,12 @@
   <title>Bass Trombone Summer Plan 2026 — Lucas Kwai</title>
   <style>
     :root {
-      --bg: #0f1117; --surface: #1a1d27; --surface2: #222536; --border: #2e3347;
-      --accent: #c9a84c; --accent-muted: #7a6530;
-      --text: #e2e4ee; --muted: #8b90a8;
-      --font: 'Georgia', serif; --mono: 'Courier New', monospace; --sans: system-ui,-apple-system,sans-serif;
-      --mon:#5b8fe8; --tue:#e8a44c; --wed:#4caf82; --thu:#9b59b6; --fri:#c9a84c; --sat:#4fc3f7; --sun:#555a6e;
-      --p1:#4caf82; --p2:#c9a84c; --p3:#e05c5c;
+      --bg:#0f1117;--surface:#1a1d27;--surface2:#222536;--border:#2e3347;
+      --accent:#c9a84c;--accent-muted:#7a6530;
+      --text:#e2e4ee;--muted:#8b90a8;
+      --font:'Georgia',serif;--mono:'Courier New',monospace;--sans:system-ui,-apple-system,sans-serif;
+      --mon:#5b8fe8;--tue:#e8a44c;--wed:#4caf82;--thu:#9b59b6;--fri:#c9a84c;--sat:#4fc3f7;--sun:#555a6e;
+      --p1:#4caf82;--p2:#c9a84c;--p3:#e05c5c;
     }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.65;}
@@ -68,15 +68,15 @@
     .dist-label{font-family:var(--sans);font-size:.88rem;color:var(--muted);}
     .dist-bar-bg{height:8px;background:var(--surface2);border-radius:4px;}
     .dist-bar-fill{height:100%;border-radius:4px;}
-    .fill-accent{background:var(--accent);}.fill-blue{background:var(--blue);}.fill-green{background:var(--wed);}
+    .fill-accent{background:var(--accent);}.fill-blue{background:var(--mon);}.fill-green{background:var(--wed);}
     .dist-pct{font-family:var(--mono);font-size:.85rem;color:var(--text);text-align:right;}
 
     /* CALENDAR */
-    .cal-progress{display:flex;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap;}
+    .cal-progress{display:flex;gap:.75rem;margin-bottom:1.25rem;flex-wrap:wrap;}
     .cal-prog-item{font-family:var(--sans);font-size:12px;background:var(--surface);border:1px solid var(--border);
       border-radius:20px;padding:.3rem .9rem;display:flex;align-items:center;gap:.5rem;}
     .cal-prog-item .prog-label{color:var(--muted);}
-    .cal-prog-item .prog-count{color:var(--accent);font-weight:bold;}
+    .cal-prog-item .prog-count{color:var(--accent);font-weight:bold;font-family:var(--mono);}
 
     .cal-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:1rem 0;}
     .cal-month{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
@@ -88,9 +88,9 @@
     .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);}
 
     .cal-day{
-      aspect-ratio:1;padding:3px;border:.5px solid var(--border);
+      aspect-ratio:1;border:.5px solid var(--border);
       cursor:pointer;transition:background .12s;
-      display:flex;flex-direction:column;justify-content:space-between;
+      display:flex;flex-direction:column;
       position:relative;overflow:hidden;
     }
     .cal-day:hover{background:var(--surface2);}
@@ -98,22 +98,24 @@
     .cal-day.empty:hover{background:transparent;}
     .cal-day.past{opacity:.45;}
     .cal-day.today{background:rgba(201,168,76,.12)!important;outline:1.5px solid var(--accent);outline-offset:-1.5px;}
-    .cal-day.done{background:rgba(76,175,130,.1)!important;}
-    .cal-day.done .check-btn{background:var(--wed);border-color:var(--wed);color:#000;}
-    .cal-daynum{font-family:var(--sans);font-size:11px;font-weight:bold;line-height:1;padding:2px 3px;}
-    .cal-theme-dot{width:5px;height:5px;border-radius:50%;margin:0 auto 3px;}
-    .cal-phase-bar{position:absolute;bottom:0;left:0;right:0;height:2px;}
+    .cal-day.all-done{background:rgba(76,175,130,.12)!important;}
+    .cal-daynum{font-family:var(--sans);font-size:11px;font-weight:bold;line-height:1;padding:3px 3px 2px;flex-shrink:0;}
+    .cal-day.today .cal-daynum{color:var(--accent);}
 
-    .check-btn{
-      position:absolute;top:2px;right:2px;
-      width:14px;height:14px;border-radius:50%;
-      border:1.5px solid var(--border);background:transparent;
-      cursor:pointer;font-size:8px;color:transparent;
-      display:flex;align-items:center;justify-content:center;
-      transition:all .12s;z-index:2;line-height:1;
-      padding:0;
+    /* per-cell progress: dots */
+    .cal-dots{
+      display:flex;gap:2px;justify-content:center;
+      flex:1;align-items:flex-end;padding-bottom:5px;flex-wrap:wrap;
+      padding-left:2px;padding-right:2px;
     }
-    .check-btn:hover{border-color:var(--wed);color:var(--wed);}
+    .cal-dot{
+      width:4px;height:4px;border-radius:50%;
+      background:var(--border);flex-shrink:0;
+      transition:background .15s;
+    }
+    .cal-dot.done{background:var(--wed);}
+
+    .cal-phase-bar{position:absolute;bottom:0;left:0;right:0;height:2px;}
 
     /* LEGEND */
     .legend{display:flex;gap:.75rem;flex-wrap:wrap;margin:.5rem 0;}
@@ -150,29 +152,54 @@
       display:flex;align-items:center;justify-content:center;transition:color .15s;}
     .modal-close:hover{color:var(--text);}
     .modal-body{padding:1.25rem 1.75rem 0;}
-    .modal-theme-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .75rem;border-radius:20px;font-family:var(--sans);font-size:12px;margin-bottom:1.25rem;}
+    .modal-theme-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .75rem;border-radius:20px;font-family:var(--sans);font-size:12px;margin-bottom:.75rem;}
     .modal-phase{font-family:var(--sans);font-size:12px;color:var(--muted);margin-bottom:1.25rem;}
     .modal-phase span{color:var(--text);}
+    .modal-day-prog{font-family:var(--sans);font-size:12px;color:var(--muted);margin-bottom:1.25rem;}
+    .modal-day-prog span{color:var(--accent);font-family:var(--mono);}
 
-    .block{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;margin-bottom:.75rem;}
-    .block-time{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:.35rem;}
-    .block-name{font-family:var(--sans);font-size:.85rem;font-weight:bold;color:var(--accent);margin-bottom:.5rem;}
+    /* BLOCKS */
+    .block{
+      background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+      margin-bottom:.75rem;overflow:hidden;transition:border-color .12s;
+    }
+    .block.block-done{background:rgba(76,175,130,.07);border-color:rgba(76,175,130,.3);}
+    .block.routine{border-left:3px solid var(--wed);}
+    .block.choir{border-left:3px solid var(--sat);}
+    .block.block-done .block-name{color:var(--wed);}
+    .block.choir.block-done .block-name{color:var(--sat);}
+
+    .block-header{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:.85rem 1.1rem .6rem;cursor:pointer;
+      transition:background .1s;
+      gap:.75rem;
+    }
+    .block-header:hover{background:rgba(255,255,255,.03);}
+    .block-header-text{flex:1;min-width:0;}
+    .block-time{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:.2rem;}
+    .block-name{font-family:var(--sans);font-size:.88rem;font-weight:bold;color:var(--accent);}
     .block.routine .block-name{color:var(--wed);}
     .block.choir .block-name{color:var(--sat);}
-    .block ul{list-style:none;padding:0;}
-    .block ul li{font-size:.85rem;padding:.2rem 0;color:var(--text);display:flex;gap:.5rem;}
-    .block ul li::before{content:'—';color:var(--muted);flex-shrink:0;}
-    .modal-tip{background:rgba(201,168,76,.08);border:1px solid var(--accent-muted);border-radius:8px;padding:.85rem 1.1rem;font-size:.85rem;color:var(--muted);margin-top:1rem;}
-    .modal-tip strong{color:var(--text);}
 
-    .modal-done-btn{
-      display:block;width:100%;padding:.9rem;margin-top:1.25rem;
-      background:var(--surface2);border:1px solid var(--border);border-radius:8px;
-      color:var(--muted);font-family:var(--sans);font-size:.9rem;cursor:pointer;
-      transition:all .15s;text-align:center;
+    .block-check{
+      width:22px;height:22px;flex-shrink:0;
+      border:1.5px solid var(--border);border-radius:5px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:13px;color:transparent;
+      transition:all .12s;
     }
-    .modal-done-btn:hover{border-color:var(--wed);color:var(--wed);}
-    .modal-done-btn.is-done{background:rgba(76,175,130,.15);border-color:var(--wed);color:var(--wed);}
+    .block.block-done .block-check{background:var(--wed);border-color:var(--wed);color:#000;}
+
+    .block-items{padding:0 1.1rem .85rem;display:none;}
+    .block.expanded .block-items{display:block;}
+    .block-items ul{list-style:none;padding:0;}
+    .block-items ul li{font-size:.85rem;padding:.2rem 0;color:var(--text);display:flex;gap:.5rem;}
+    .block-items ul li::before{content:'—';color:var(--muted);flex-shrink:0;}
+
+    .modal-tip{background:rgba(201,168,76,.08);border:1px solid var(--accent-muted);border-radius:8px;
+      padding:.85rem 1.1rem;font-size:.85rem;color:var(--muted);margin-top:1rem;}
+    .modal-tip strong{color:var(--text);}
 
     /* RESPONSIVE */
     @media(max-width:700px){
@@ -250,7 +277,6 @@
     <div class="sec-label">02 — Tempo Progression</div>
     <h2>Milestone targets by phase</h2>
     <div class="tempo-timeline" id="tempo-timeline"></div>
-
     <h3>Weekly practice distribution</h3>
     <div class="dist-bars">
       <div class="dist-row">
@@ -269,35 +295,35 @@
         <div class="dist-pct">5%</div>
       </div>
     </div>
-    <p style="font-size:.88rem;color:var(--muted);">Scales are the main technical work of the summer — not just warm-up. Recital repertoire is maintained, not developed.</p>
+    <p style="font-size:.88rem;color:var(--muted);">Scales are the main technical work of the summer. Recital repertoire is maintained here, not developed.</p>
   </section>
 
   <section id="calendar">
     <div class="sec-label">03 — Summer Calendar</div>
-    <h2>Click any day to see the full practice plan</h2>
-    <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;">Tap the circle in the top-right corner of a day to mark it complete. Your progress is saved in this browser.</p>
+    <h2>Tap a day to open its practice plan</h2>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;">Open a day and tick off each segment as you complete it. Dots in the calendar fill green as blocks are done. Progress saves in this browser.</p>
 
     <div class="cal-progress">
       <div class="cal-prog-item"><span class="prog-label">June</span><span class="prog-count" id="prog-june">—</span></div>
       <div class="cal-prog-item"><span class="prog-label">July</span><span class="prog-count" id="prog-july">—</span></div>
       <div class="cal-prog-item"><span class="prog-label">August</span><span class="prog-count" id="prog-aug">—</span></div>
-      <div class="cal-prog-item"><span class="prog-label">Summer total</span><span class="prog-count" id="prog-total">—</span></div>
+      <div class="cal-prog-item"><span class="prog-label">Total</span><span class="prog-count" id="prog-total">—</span></div>
     </div>
 
     <div class="legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--mon)"></div>Monday — Recovery &amp; musicianship</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--tue)"></div>Tuesday — Coordination &amp; articulation</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--wed)"></div>Wednesday — Register &amp; flexibility</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--thu)"></div>Thursday — Excerpts</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--fri)"></div>Friday — Scales &amp; repertoire</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--sat)"></div>Saturday — Consolidation</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--sun)"></div>Sunday — Rest</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--mon)"></div>Monday</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--tue)"></div>Tuesday</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--wed)"></div>Wednesday</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--thu)"></div>Thursday</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--fri)"></div>Friday</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--sat)"></div>Saturday</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--sun)"></div>Sunday</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--wed);border-radius:2px;width:14px;height:5px;"></div>Blocks completed</div>
     </div>
-    <div class="legend" style="margin-top:.5rem;">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--p1);border-radius:2px;width:18px;height:6px;"></div>Phase 1: Foundation</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--p2);border-radius:2px;width:18px;height:6px;"></div>Phase 2: Building</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--p3);border-radius:2px;width:18px;height:6px;"></div>Phase 3: Integration</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--wed);border-radius:2px;width:18px;height:6px;"></div>Completed</div>
+    <div class="legend" style="margin-top:.4rem;">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--p1);border-radius:2px;width:18px;height:5px;"></div>Phase 1</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--p2);border-radius:2px;width:18px;height:5px;"></div>Phase 2</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--p3);border-radius:2px;width:18px;height:5px;"></div>Phase 3</div>
     </div>
 
     <div class="cal-wrap" id="cal-wrap"></div>
@@ -331,7 +357,7 @@
   const STORAGE_KEY = 'lkpractice2026';
 
   const DOW_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const MONTH_NAMES = ['January','February','March','April','May','June','July','August'];
 
   const THEMES = {
     0:{name:'Rest',color:'var(--sun)'},
@@ -344,9 +370,9 @@
   };
 
   const PHASES = [
-    {name:'Foundation',start:new Date(2026,5,1), end:new Date(2026,5,28), color:'var(--p1)',cssVar:'--p1',remington:'70→80',chromatic:'60→70',lipslurs:'30→40'},
-    {name:'Building',  start:new Date(2026,5,29),end:new Date(2026,6,26), color:'var(--p2)',cssVar:'--p2',remington:'80→90',chromatic:'70→80',lipslurs:'40→50'},
-    {name:'Integration',start:new Date(2026,6,27),end:new Date(2026,7,31),color:'var(--p3)',cssVar:'--p3',remington:'90→100',chromatic:'80→90',lipslurs:'50→60'},
+    {name:'Foundation', start:new Date(2026,5,1), end:new Date(2026,5,28), color:'var(--p1)',cssVar:'--p1',remington:'70→80',chromatic:'60→70',lipslurs:'30→40'},
+    {name:'Building',   start:new Date(2026,5,29),end:new Date(2026,6,26), color:'var(--p2)',cssVar:'--p2',remington:'80→90',chromatic:'70→80',lipslurs:'40→50'},
+    {name:'Integration',start:new Date(2026,6,27),end:new Date(2026,7,31), color:'var(--p3)',cssVar:'--p3',remington:'90→100',chromatic:'80→90',lipslurs:'50→60'},
   ];
 
   function getPhase(date){
@@ -355,9 +381,9 @@
     return -1;
   }
 
-  // ── DAILY ROUTINE (prepended to every practice day) ─────
-  const DAILY_ROUTINE = {time:'10:30–11:15',name:'Daily routine',cls:'routine',items:[
-    '10 min — Alexander Technique / mind-body mapping: scan upward from the feet, release jaw, neck, and shoulder tension before touching the horn',
+  // ── DAILY ROUTINE ────────────────────────────────────────
+  const DR = {time:'10:30–11:15',name:'Daily routine',cls:'routine',items:[
+    '10 min — Alexander Technique / mind-body mapping: scan upward from feet, release jaw, neck, and shoulder tension before touching the horn',
     '10 min — Breathing exercises: full ribcage expansion, resist the urge to tense on the inhale, feel the breath drop the body',
     '10 min — Buzzing (mouthpiece only): long tones and simple descending lines — feel the vibration without instrument resistance',
     '15 min — Slow descending scales: full range, very slow, one note per bow-length of air, even tone across all registers',
@@ -371,111 +397,223 @@
     ],tip:'Recovery is training. Playing through fatigue builds bad tension habits, not skill.'},
 
     1:{blocks:[
-      DAILY_ROUTINE,
-      {time:'11:15–11:45',name:'Bordogni (slow and easy)',items:['Choose Vocalise No.1 or 2','Sing the line before picking up the horn','Play at 60% speed — free tone, not speed','Stop if tension arrives; breathe and reset']},
+      DR,
+      {time:'11:15–11:45',name:'Bordogni — slow and easy',items:['Choose Vocalise No.1 or 2','Sing the line before picking up the horn','Play at 60% speed — free tone, not speed','Stop if tension arrives; breathe and reset']},
       {time:'11:45–12:15',name:'Ottman sight-singing',items:['Open to any chapter, sing 3–4 exercises by sight','Tap the pulse with your foot','Mark any pitch you corrected; sing it again','No instrument — ears only']},
       {time:'Afternoon',name:'Ear training and transcription',items:['Transcribe 5–10 bars of a trombone excerpt by ear','Write it out, then check against the score','Ear training app for 15 minutes (intervals, chords)','Physical recovery: run, walk, or stretch']},
     ],tip:'Monday sets the physiological baseline for the week. A rushed Monday creates tension that compounds through Friday.'},
 
     2:{blocks:[
-      DAILY_ROUTINE,
-      {time:'11:15–11:45',name:'Scales — working tempo',items:['Remington scale patterns at current working tempo','Push by +4 bpm only if tone and coordination stayed stable','Three clean repetitions at new tempo = it counts','If unstable: drop back, do not force']},
+      DR,
+      {time:'11:15–11:45',name:'Scales — working tempo',items:['Remington scale patterns at current working tempo','Push by +4 bpm only if tone and coordination stayed stable','Three clean reps at new tempo = it counts','If unstable: drop back, do not force']},
       {time:'11:45–12:15',name:'Chromatic scales + Arban articulation',items:['Chromatic scales full range — even spacing, clean slide','Arban single tongue studies pp.1–8','Each attack: open air stream, then tongue — not tongue first','Record 30 seconds; listen for unevenness']},
       {time:'12:15–12:45',name:'Scale extension and coordination',items:['Scales in thirds, fourths, and arpeggios','Work at 70% of Remington tempo to maintain quality','Focus: slide moves with the air, not ahead of it']},
-      {time:'Afternoon',name:'Short recording review',items:['Listen back to the morning recording','Note one improvement and one thing to fix tomorrow']},
-      {time:'7:30–10:30 PM',name:'Vox Camerata Chamber Singers rehearsal',cls:'choir',items:['Fixed weekly commitment — do not schedule practice here','This counts as ensemble ear training and sight-reading','Note anything from rehearsal that connects to your solo work']},
+      {time:'Afternoon',name:'Short recording review',items:['Listen to the morning recording','Note one improvement and one thing to fix tomorrow']},
+      {time:'7:30–10:30 PM',name:'Vox Camerata Chamber Singers rehearsal',cls:'choir',items:['Fixed weekly commitment — do not schedule practice here','This counts as ensemble ear training and sight-reading','Note anything that connects to your solo work']},
     ],tip:'On articulation: tongue placement should feel like releasing a note, not blocking it. The air is always moving.'},
 
     3:{blocks:[
-      DAILY_ROUTINE,
+      DR,
       {time:'11:15–11:45',name:'Scales — register-spanning',items:['Full-range scale across the register break','Slow — feel the transition, do not grip','At each break: relax the aperture, let the air drive the change']},
       {time:'11:45–12:15',name:'Brad Edwards lip slurs',items:['Sets 1–3 at current working tempo','Sing the pattern first if the slur breaks down','Aim for comfort and ease, not speed']},
-      {time:'12:15–12:45',name:'Bordogni + drone work',items:['Choose a study that crosses the register break (e.g. No.5, No.12)','Play with a sustained drone to check pitch stability','Record 2 minutes; listen for pitch drift at register transitions']},
-      {time:'Afternoon',name:'Tension check recording',items:['Set up a camera facing you','Play the lip slur set once','Watch it back: jaw, neck, shoulder — look for where tension enters']},
+      {time:'12:15–12:45',name:'Bordogni + drone work',items:['Choose a study that crosses the register break (e.g. No.5, No.12)','Play with a sustained drone to check pitch stability','Record 2 minutes; listen for pitch drift at transitions']},
+      {time:'Afternoon',name:'Tension check recording',items:['Set up a camera facing you','Play the lip slur set once','Watch it back: jaw, neck, shoulder — where does tension enter?']},
     ],tip:'Register connection breaks are almost always a breathing problem, not an embouchure problem. Find the breath first.'},
 
     4:{blocks:[
-      DAILY_ROUTINE,
-      {time:'11:15–11:45',name:'Scales — maintenance',items:['Remington at current tempo (maintenance, not push)','Chromatic scales — clean and even','Keep it light: this is not the day to push tempos']},
+      DR,
+      {time:'11:15–11:45',name:'Scales — maintenance',items:['Remington at current tempo (maintenance, not a push)','Chromatic scales — clean and even','Keep it light: this is not the day to push tempos']},
       {time:'11:45–12:15',name:'Orchestral excerpt 1',items:['Listen to a professional recording first, twice','Read slowly without stopping','Identify the two hardest bars; work them in isolation']},
       {time:'12:15–12:45',name:'Orchestral excerpt 2',items:['Different excerpt — vary the technical demand','Score study first: dynamics, context, ensemble role','End with a full read-through at tempo']},
-      {time:'Afternoon',name:'Score study and video',items:['Follow the score of a full movement containing your excerpt','Watch a professional perform one excerpt — observe physical setup']},
+      {time:'Afternoon',name:'Score study and video',items:['Follow the score of a full movement containing your excerpt','Watch a professional perform one excerpt — observe their physical setup']},
     ],tip:'Know the orchestral context, not just your part. Excerpt preparation is ensemble preparation.'},
 
     5:{blocks:[
-      DAILY_ROUTINE,
+      DR,
       {time:'11:15–12:00',name:'Scales — extended session',items:['45 min dedicated to scale work','Remington, chromatic, thirds, arpeggios — work through the full set','This is the main technical block of Friday — not a warm-up','Push tempo carefully; stop if tone suffers']},
       {time:'12:00–12:30',name:'Recital repertoire — maintenance',items:['One full run-through, no stopping','Sing the line first if a passage feels uncertain','The goal is ownership, not perfection']},
       {time:'Afternoon',name:'Memorisation and interpretation',items:['Work one problem passage in isolation (slow → build)','Memorise the opening 16 bars; cover the page and test yourself','Record the run-through; listen back']},
-    ],tip:'Scales are Friday\'s main work. Recital repertoire is maintained here, not developed — that comes from the rest of the week.'},
+    ],tip:"Scales are Friday's main work. Recital repertoire is maintained here, not developed — that comes from the rest of the week."},
 
     6:{blocks:[
-      DAILY_ROUTINE,
+      DR,
       {time:'11:15–11:45',name:'Week review',items:['Play the current Remington tempo — did it hold?','Play the current lip slur tempo — any tension?','Honest self-assessment: what improved this week?']},
       {time:'11:45–12:30',name:'Recording session',items:['Record the three tempo targets (Remington, Chromatic, Lip slurs)','Record a full run of recital repertoire','Save with today\'s date — this is your progress log']},
       {time:'1:00–6:00 PM',name:'Vox Camerata Community Choir',cls:'choir',items:['Fixed weekly commitment — do not schedule practice here','This counts as ensemble ear training and musicianship','Note anything from rehearsal that connects to your solo work']},
       {time:'After 6:00 PM',name:'Evening wind-down',items:['Protect this time — you\'ve had a full day','Professional development only if energy allows (CV, bio, LinkedIn)','No heavy technical practice after choir']},
-    ],tip:'The Saturday recording is your progress document. Date every file. Finish it before 1pm — choir starts then.'},
+    ],tip:"The Saturday recording is your progress document. Date every file. Finish it before 1pm — choir starts then."},
   };
 
-  // ── CURRENT OPEN DAY (for modal done button) ─────────────
-  let openDayRef = null;
-
-  // ── STORAGE ──────────────────────────────────────────────
+  // ── STORAGE (block-level) ────────────────────────────────
+  // Structure: { "2026-5-4": { "0": true, "2": true } }
   function getStorage(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');}catch{return {};}}
   function saveStorage(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));}
   function dayKey(y,m,d){return `${y}-${m}-${d}`;}
-  function isDone(y,m,d){return !!getStorage()[dayKey(y,m,d)];}
 
-  function toggleDone(y,m,d,e){
-    if(e)e.stopPropagation();
-    const data=getStorage(),key=dayKey(y,m,d);
-    data[key]=!data[key];
-    if(!data[key])delete data[key];
-    saveStorage(data);
-    refreshDay(y,m,d,!!data[key]);
+  function isBlockDone(y,m,d,idx){
+    const s=getStorage(),k=dayKey(y,m,d);
+    return !!(s[k]&&s[k][idx]);
+  }
+
+  function getBlocksDoneCount(y,m,d){
+    const s=getStorage(),k=dayKey(y,m,d);
+    if(!s[k])return 0;
+    return Object.values(s[k]).filter(Boolean).length;
+  }
+
+  function toggleBlock(y,m,d,idx){
+    const s=getStorage(),k=dayKey(y,m,d);
+    if(!s[k])s[k]={};
+    s[k][idx]=!s[k][idx];
+    if(!s[k][idx])delete s[k][idx];
+    if(Object.keys(s[k]).length===0)delete s[k];
+    saveStorage(s);
+    refreshDay(y,m,d);
     refreshProgress();
+    // update modal block if open
     if(openDayRef&&openDayRef[0]===y&&openDayRef[1]===m&&openDayRef[2]===d){
-      updateModalDoneBtn(!!data[key]);
+      const blockEl=document.querySelector(`[data-block-idx="${idx}"]`);
+      if(blockEl){
+        const now=isBlockDone(y,m,d,idx);
+        blockEl.classList.toggle('block-done',now);
+        const chk=blockEl.querySelector('.block-check');
+        if(chk)chk.textContent=now?'✓':'';
+      }
+      updateModalProgress(y,m,d);
     }
   }
 
-  function refreshDay(y,m,d,done){
+  function refreshDay(y,m,d){
+    const dow=new Date(y,m,d).getDay();
+    const total=DAY_PLANS[dow].blocks.length;
+    const done=getBlocksDoneCount(y,m,d);
     const el=document.getElementById(`day-${y}-${m}-${d}`);
     if(!el)return;
-    el.classList.toggle('done',done);
+    el.classList.toggle('all-done',done===total);
+    // update dots
+    const dots=el.querySelectorAll('.cal-dot');
+    dots.forEach((dot,i)=>{dot.classList.toggle('done',isBlockDone(y,m,d,i));});
+  }
+
+  // ── PROGRESS COUNTERS ────────────────────────────────────
+  function getMonthStats(y,m){
+    const days=new Date(y,m+1,0).getDate();
+    let totalB=0,doneB=0;
+    for(let d=1;d<=days;d++){
+      const dow=new Date(y,m,d).getDay();
+      const n=DAY_PLANS[dow].blocks.length;
+      totalB+=n;
+      doneB+=getBlocksDoneCount(y,m,d);
+    }
+    return{totalB,doneB};
   }
 
   function refreshProgress(){
     const months=[
-      {y:2026,m:5,days:30,id:'prog-june'},
-      {y:2026,m:6,days:31,id:'prog-july'},
-      {y:2026,m:7,days:31,id:'prog-aug'},
+      {y:2026,m:5,id:'prog-june'},
+      {y:2026,m:6,id:'prog-july'},
+      {y:2026,m:7,id:'prog-aug'},
     ];
-    let total=0,maxTotal=0;
+    let gt=0,gd=0;
     months.forEach(mo=>{
-      let count=0;
-      for(let d=1;d<=mo.days;d++){if(isDone(mo.y,mo.m,d))count++;}
-      total+=count;maxTotal+=mo.days;
+      const{totalB,doneB}=getMonthStats(mo.y,mo.m);
+      gt+=totalB;gd+=doneB;
       const el=document.getElementById(mo.id);
-      if(el)el.textContent=`${count}/${mo.days}`;
+      if(el)el.textContent=`${doneB}/${totalB} blocks`;
     });
     const te=document.getElementById('prog-total');
-    if(te)te.textContent=`${total}/${maxTotal}`;
+    if(te)te.textContent=`${gd}/${gt} blocks`;
   }
 
-  // ── MODAL DONE BUTTON ────────────────────────────────────
-  function updateModalDoneBtn(done){
-    const btn=document.getElementById('modal-done-btn');
-    if(!btn)return;
-    btn.textContent=done?'Completed ✓ — tap to undo':'Mark this day complete';
-    btn.classList.toggle('is-done',done);
+  // ── MODAL ────────────────────────────────────────────────
+  let openDayRef=null;
+
+  function updateModalProgress(y,m,d){
+    const dow=new Date(y,m,d).getDay();
+    const total=DAY_PLANS[dow].blocks.length;
+    const done=getBlocksDoneCount(y,m,d);
+    const el=document.getElementById('modal-day-prog');
+    if(el){
+      if(done===0)el.innerHTML=`<span>0</span>/${total} blocks completed`;
+      else if(done===total)el.innerHTML=`All <span>${total}/${total}</span> blocks completed ✓`;
+      else el.innerHTML=`<span>${done}</span>/${total} blocks completed`;
+    }
   }
 
-  function modalToggleDone(){
-    if(!openDayRef)return;
-    toggleDone(openDayRef[0],openDayRef[1],openDayRef[2],null);
+  function openDay(y,m,d){
+    const date=new Date(y,m,d);
+    const dow=date.getDay();
+    const theme=THEMES[dow];
+    const phaseIdx=getPhase(date);
+    const plan=DAY_PLANS[dow];
+    openDayRef=[y,m,d];
+
+    const isToday=date.toDateString()===TODAY.toDateString();
+    const isPast=date<TODAY&&!isToday;
+
+    document.getElementById('modal-date').textContent=`${DOW_NAMES[dow]}, ${d} ${MONTH_NAMES[m-5]} 2026`;
+    let sub='';
+    if(isToday)sub='● Today';
+    else if(isPast)sub='Past';
+    if(phaseIdx>=0)sub+=(sub?' · ':'')+`Phase ${phaseIdx+1}: ${PHASES[phaseIdx].name}`;
+    document.getElementById('modal-date-sub').textContent=sub;
+
+    let body=`<div class="modal-theme-badge" style="background:${theme.color}20;border:1px solid ${theme.color};color:${theme.color};">${theme.name}</div>`;
+
+    if(phaseIdx>=0){
+      const p=PHASES[phaseIdx];
+      body+=`<div class="modal-phase">Tempo targets this phase — Remington: <span>${p.remington} bpm</span> · Chromatic: <span>${p.chromatic} bpm</span> · Lip slurs: <span>${p.lipslurs} bpm</span></div>`;
+    }
+
+    const total=plan.blocks.length;
+    const done=getBlocksDoneCount(y,m,d);
+    body+=`<div class="modal-day-prog" id="modal-day-prog">`;
+    if(done===0)body+=`<span>0</span>/${total} blocks completed`;
+    else if(done===total)body+=`All <span>${total}/${total}</span> blocks completed ✓`;
+    else body+=`<span>${done}</span>/${total} blocks completed`;
+    body+=`</div>`;
+
+    plan.blocks.forEach((b,i)=>{
+      const blockDone=isBlockDone(y,m,d,i);
+      const extraCls=(b.cls?' '+b.cls:'')+(blockDone?' block-done':'');
+      body+=`<div class="block${extraCls}" data-block-idx="${i}">`;
+      body+=`<div class="block-header" onclick="toggleBlock(${y},${m},${d},${i})">`;
+      body+=`<div class="block-header-text">`;
+      body+=`<div class="block-time">${b.time}</div>`;
+      body+=`<div class="block-name">${b.name}</div>`;
+      body+=`</div>`;
+      body+=`<div class="block-check">${blockDone?'✓':''}</div>`;
+      body+=`</div>`;
+      body+=`<div class="block-items"><ul>${b.items.map(item=>`<li>${item}</li>`).join('')}</ul></div>`;
+      body+=`</div>`;
+    });
+
+    if(plan.tip)body+=`<div class="modal-tip"><strong>Principle:</strong> ${plan.tip}</div>`;
+    body+=`<p style="font-family:var(--sans);font-size:11px;color:var(--muted);margin-top:1rem;text-align:center;">Tap a block header to mark it done · Tap again to undo</p>`;
+
+    document.getElementById('modal-body').innerHTML=body;
+
+    // expand first incomplete block automatically
+    const allBlocks=document.querySelectorAll('#modal-body .block');
+    let expanded=false;
+    allBlocks.forEach((el,i)=>{
+      if(!expanded&&!isBlockDone(y,m,d,i)){
+        el.classList.add('expanded');
+        expanded=true;
+      }
+    });
+
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow='hidden';
   }
+
+  function closeModal(e){if(e.target===document.getElementById('modal-overlay'))closeModalDirect();}
+  function closeModalDirect(){
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow='';
+    openDayRef=null;
+  }
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalDirect();});
 
   // ── TEMPO TIMELINE ───────────────────────────────────────
   function buildTempoTimeline(){
@@ -525,7 +663,6 @@
       html+=`<div class="cal-month-header"><span>${label}</span>`;
       if(pi>=0)html+=`<span class="cal-phase-badge" style="background:${PHASES[pi].color};color:#000;">${PHASES[pi].name}</span>`;
       html+=`</div>`;
-
       html+=`<div class="cal-dow-row">`;
       ['S','M','T','W','T','F','S'].forEach(d=>{html+=`<div class="cal-dow">${d}</div>`;});
       html+=`</div><div class="cal-grid">`;
@@ -540,17 +677,22 @@
         const phaseColor=phaseIdx>=0?`var(${PHASES[phaseIdx].cssVar})`:'transparent';
         const isToday=date.toDateString()===TODAY.toDateString();
         const isPast=date<TODAY&&!isToday;
-        const done=isDone(year,month,day);
+        const blockCount=DAY_PLANS[dow].blocks.length;
+        const doneCount=getBlocksDoneCount(year,month,day);
+        const allDone=doneCount===blockCount;
 
         let cls='cal-day';
         if(isPast)cls+=' past';
         if(isToday)cls+=' today';
-        if(done)cls+=' done';
+        if(allDone)cls+=' all-done';
 
         html+=`<div class="${cls}" id="day-${year}-${month}-${day}" onclick="openDay(${year},${month},${day})" title="${DOW_NAMES[dow]}">`;
         html+=`<div class="cal-daynum">${day}</div>`;
-        html+=`<button type="button" class="check-btn" onclick="toggleDone(${year},${month},${day},event)" title="${done?'Mark as not done':'Mark as done'}">✓</button>`;
-        html+=`<div class="cal-theme-dot" style="background:${theme.color}"></div>`;
+        html+=`<div class="cal-dots">`;
+        for(let bi=0;bi<blockCount;bi++){
+          html+=`<div class="cal-dot${isBlockDone(year,month,day,bi)?' done':''}"></div>`;
+        }
+        html+=`</div>`;
         html+=`<div class="cal-phase-bar" style="background:${phaseColor};opacity:.6;"></div>`;
         html+=`</div>`;
       }
@@ -560,68 +702,15 @@
     });
   }
 
-  // ── MODAL ────────────────────────────────────────────────
-  function openDay(y,m,d){
-    const date=new Date(y,m,d);
-    const dow=date.getDay();
-    const theme=THEMES[dow];
-    const phaseIdx=getPhase(date);
-    const plan=DAY_PLANS[dow];
-    const done=isDone(y,m,d);
-    openDayRef=[y,m,d];
-
-    const isToday=date.toDateString()===TODAY.toDateString();
-    const isPast=date<TODAY&&!isToday;
-
-    document.getElementById('modal-date').textContent=`${DOW_NAMES[dow]}, ${d} ${MONTH_NAMES[m]} 2026`;
-    let sub='';
-    if(isToday)sub='● Today';
-    else if(isPast)sub='Past';
-    if(phaseIdx>=0)sub+=(sub?' · ':'')+`Phase ${phaseIdx+1}: ${PHASES[phaseIdx].name}`;
-    document.getElementById('modal-date-sub').textContent=sub;
-
-    let body=`<div class="modal-theme-badge" style="background:${theme.color}20;border:1px solid ${theme.color};color:${theme.color};">${theme.name}</div>`;
-
-    if(phaseIdx>=0){
-      const p=PHASES[phaseIdx];
-      body+=`<div class="modal-phase">Tempo targets this phase — Remington: <span>${p.remington} bpm</span> · Chromatic: <span>${p.chromatic} bpm</span> · Lip slurs: <span>${p.lipslurs} bpm</span></div>`;
-    }
-
-    plan.blocks.forEach(b=>{
-      const extraCls=b.cls?` ${b.cls}`:'';
-      body+=`<div class="block${extraCls}">`;
-      body+=`<div class="block-time">${b.time}</div>`;
-      body+=`<div class="block-name">${b.name}</div>`;
-      body+=`<ul>${b.items.map(i=>`<li>${i}</li>`).join('')}</ul>`;
-      body+=`</div>`;
-    });
-
-    if(plan.tip)body+=`<div class="modal-tip"><strong>Principle:</strong> ${plan.tip}</div>`;
-
-    body+=`<button type="button" id="modal-done-btn" class="modal-done-btn${done?' is-done':''}" onclick="modalToggleDone()">${done?'Completed ✓ — tap to undo':'Mark this day complete'}</button>`;
-
-    document.getElementById('modal-body').innerHTML=body;
-    document.getElementById('modal-overlay').classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-
-  function closeModal(e){if(e.target===document.getElementById('modal-overlay'))closeModalDirect();}
-  function closeModalDirect(){
-    document.getElementById('modal-overlay').classList.remove('open');
-    document.body.style.overflow='';
-    openDayRef=null;
-  }
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalDirect();});
-
-  // ── WEEKLY REFERENCE ─────────────────────────────────────
+  // ── WEEKLY REF ───────────────────────────────────────────
   function buildWeekRef(){
     const days=[
       {dow:1,focus:'Recovery & Musicianship',summary:'Daily routine (45 min), gentle Bordogni, Ottman sight-singing, ear training, transcription, physical recovery.'},
-      {dow:2,focus:'Coordination & Articulation',summary:'Daily routine (45 min), scales at working tempo, chromatic scales, Arban articulation, scale extension work. Evening: VC Chamber Singers 7:30–10:30 PM.'},
+      {dow:2,focus:'Coordination & Articulation',summary:'Daily routine (45 min), scales at working tempo, chromatic + Arban, scale extension. Evening: VC Chamber Singers 7:30–10:30 PM.'},
       {dow:3,focus:'Register & Flexibility',summary:'Daily routine (45 min), register-spanning scales, Brad Edwards lip slurs, Bordogni with drone, tension check recording.'},
       {dow:4,focus:'Excerpts',summary:'Daily routine (45 min), scale maintenance (light), two orchestral excerpts with listening and score study.'},
-      {dow:5,focus:'Scales & Repertoire',summary:'Daily routine (45 min), extended 45-min scale session (main technical block), recital repertoire maintenance run-through, memorisation.'},
-      {dow:6,focus:'Consolidation + VC Choir',summary:'Daily routine (45 min), week review, recording session — all done before 1pm. 1–6pm: VC Community Choir. Evening: wind-down only.'},
+      {dow:5,focus:'Scales & Repertoire',summary:'Daily routine (45 min), 45-min extended scale session (main technical block), recital repertoire maintenance, memorisation.'},
+      {dow:6,focus:'Consolidation + VC Choir',summary:'Daily routine (45 min), week review, recording session — all before 1pm. 1–6pm: VC Community Choir. Evening: wind-down only.'},
       {dow:0,focus:'Rest',summary:'No instrument. Mental practice only if needed. Protect recovery completely.'},
     ];
     const el=document.getElementById('week-ref');
@@ -637,7 +726,7 @@
 
   // ── INIT ─────────────────────────────────────────────────
   document.getElementById('today-label').textContent=
-    `${DOW_NAMES[TODAY.getDay()]}, ${TODAY.getDate()} ${MONTH_NAMES[TODAY.getMonth()]}`;
+    `${DOW_NAMES[TODAY.getDay()]}, ${TODAY.getDate()} ${MONTH_NAMES[TODAY.getMonth()-5]}`;
 
   buildTempoTimeline();
   buildCalendar();
