@@ -168,6 +168,12 @@
     .block.choir{border-left:3px solid var(--sat);}
     .block.block-done .block-name{color:var(--wed);}
     .block.choir.block-done .block-name{color:var(--sat);}
+    .block.life{border-left:3px solid var(--border);}
+    .block.life .block-name{color:var(--muted);}
+    .block.life.block-done{background:rgba(139,144,168,.07)!important;border-color:rgba(139,144,168,.3)!important;}
+    .block.life.block-done .block-name{color:var(--muted)!important;}
+    .block.life .block-check{border-color:var(--muted);}
+    .block.life.block-done .block-check{background:var(--muted);border-color:var(--muted);color:#000;}
 
     .block-header{
       display:flex;justify-content:space-between;align-items:center;
@@ -346,21 +352,21 @@
         <div class="modal-date" id="modal-date"></div>
         <div class="modal-date-sub" id="modal-date-sub"></div>
       </div>
-      <button type="button" class="modal-close" onclick="closeModalDirect()">✕</button>
+      <button type="button" class="modal-close" onclick="closeModalDirect()">&#x2715;</button>
     </div>
     <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
 
 <script>
-  const TODAY = new Date(2026, 5, 4);
+  const TODAY = new Date();
   const STORAGE_KEY = 'lkpractice2026';
 
   const DOW_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const MONTH_NAMES = ['January','February','March','April','May','June','July','August'];
 
   const THEMES = {
-    0:{name:'Rest',color:'var(--sun)'},
+    0:{name:'Musicianship & Review',color:'var(--sun)'},
     1:{name:'Recovery & Musicianship',color:'var(--mon)'},
     2:{name:'Coordination & Articulation',color:'var(--tue)'},
     3:{name:'Register & Flexibility',color:'var(--wed)'},
@@ -381,70 +387,586 @@
     return -1;
   }
 
-  // ── DAILY ROUTINE ────────────────────────────────────────
-  const DR = {time:'10:30–11:15',name:'Daily routine',cls:'routine',items:[
-    '10 min — Alexander Technique / mind-body mapping: scan upward from feet, release jaw, neck, and shoulder tension before touching the horn',
-    '10 min — Breathing exercises: full ribcage expansion, resist the urge to tense on the inhale, feel the breath drop the body',
-    '10 min — Buzzing (mouthpiece only): long tones and simple descending lines — feel the vibration without instrument resistance',
-    '15 min — Slow descending scales: full range, very slow, one note per bow-length of air, even tone across all registers',
+  // -- DAILY ROUTINE --
+  const DR = {time:'10:00–10:30',name:'Daily Routine',cls:'routine',items:[
+    '8 min — Alexander Technique / mind-body mapping: scan upward from feet, release jaw, neck, and shoulder tension before touching the horn',
+    '7 min — Breathing exercises: full ribcage expansion, resist the urge to tense on the inhale, feel the breath drop the body',
+    '7 min — Buzzing (mouthpiece only): long tones and simple descending lines — feel the vibration without instrument resistance',
+    '8 min — Slow descending scales: full range, very slow, one note per bow-length of air, even tone across all registers',
   ]};
 
-  // ── DAY PLANS ────────────────────────────────────────────
+  // -- DAY PLANS --
   const DAY_PLANS = {
-    0:{blocks:[
-      {time:'All day',name:'Rest',items:['No instrument — this is non-negotiable','Body and embouchure need full recovery','Protect Sunday to sustain the whole week']},
-      {time:'Optional — 20 min',name:'Mental practice only',items:['Listen to a recording of your recital repertoire','Visualise difficult passages without playing','Read a score or Bordogni study away from the horn']},
-    ],tip:'Recovery is training. Playing through fatigue builds bad tension habits, not skill.'},
 
-    1:{blocks:[
+    // Sunday (dow=0)
+    0:{blocks:[
+      {time:'08:30–09:00',name:'Wake up, breakfast',cls:'life',items:[
+        'Drink a full glass of water before eating — you have been fasting for 8+ hours',
+        'Protein + complex carbs: eggs, oats, fruit — fuel the afternoon session',
+        'No horn within 30 minutes of eating; give the body time to settle',
+      ]},
+      {time:'09:00–10:00',name:'Free time',cls:'life',items:[
+        'Genuine rest — no scores, no theory, no music apps',
+        'Let the body and mind arrive gently at the day before the 10:00 routine',
+      ]},
       DR,
-      {time:'11:15–11:45',name:'Bordogni — slow and easy',items:['Choose Vocalise No.1 or 2','Sing the line before picking up the horn','Play at 60% speed — free tone, not speed','Stop if tension arrives; breathe and reset']},
-      {time:'11:45–12:15',name:'Ottman sight-singing',items:['Open to any chapter, sing 3–4 exercises by sight','Tap the pulse with your foot','Mark any pitch you corrected; sing it again','No instrument — ears only']},
-      {time:'Afternoon',name:'Ear training and transcription',items:['Transcribe 5–10 bars of a trombone excerpt by ear','Write it out, then check against the score','Ear training app for 15 minutes (intervals, chords)','Physical recovery: run, walk, or stretch']},
+      {time:'10:30–11:00',name:'Active Listening',items:[
+        'Listen to a full trombone concerto or orchestral excerpt — no phone, full attention',
+        'Follow the score if you have it; note articulation, phrasing, dynamic shape',
+        'Write one observation you want to apply this week',
+      ]},
+      {time:'11:00–11:30',name:'Ear Training',items:[
+        'Interval and chord recognition (app or piano) — 15 min focused session',
+        'Sing back any interval you miss before moving on',
+        'Aim for 80%+ accuracy before stopping; track this across weeks',
+      ]},
+      {time:'11:30–12:00',name:'Free time',cls:'life',items:[
+        'Short break before lunch — stretch, walk outside, hydrate',
+      ]},
+      {time:'12:00–13:00',name:'Lunch with family',cls:'life',items:[
+        'Sit down and eat properly — not at a desk or screen',
+        'A proper mid-day meal sustains the afternoon session',
+        'Family time: the scores and the horn can wait',
+      ]},
+      {time:'13:00–14:00',name:'Free time / rest',cls:'life',items:[
+        'Rest after lunch — digestion and mental consolidation',
+        'A 20-min nap here is legitimate recovery, not laziness; set an alarm',
+      ]},
+      {time:'14:00–14:30',name:'Sight-singing',items:[
+        'Ottman: 3–4 exercises by sight, no instrument',
+        'Tap the pulse with your foot; mark any pitch corrected and sing it again clean',
+        'Ear-only work builds inner hearing that transfers directly to intonation on the horn',
+      ]},
+      {time:'14:30–15:00',name:'Transcription',items:[
+        'Transcribe 5–8 bars of a trombone line by ear — slow the recording right down if needed',
+        'Write it out by hand, then verify against the score',
+        'Mark any interval you consistently misheard; that is your ear training target next week',
+      ]},
+      {time:'15:00–15:30',name:'Free time / rest',cls:'life',items:[
+        'Recovery window between sessions — stretch, walk, rest',
+        'Do not pick up the horn yet',
+      ]},
+      {time:'15:30–16:00',name:'Recording session',items:[
+        'Record the three tempo targets: Remington, Chromatic, Lip slurs',
+        'Record a full run of recital repertoire — no stopping, no edits',
+        "Save with today's date and the current phase (e.g. 2026-06-08_P1)",
+      ]},
+      {time:'16:00–16:30',name:'Rest / review',items:[
+        'Listen back to the recording you just made — same day, fresh ears',
+        'One thing that improved; one thing to address on Monday',
+        'No more horn after this — protect the recovery',
+      ]},
+      {time:'16:30–18:00',name:'Free time / rest',cls:'life',items:[
+        'True downtime — no practice, no theory, no scores',
+        'Read, go outside, spend time with people outside music',
+      ]},
+      {time:'18:00–19:00',name:'Dinner with family',cls:'life',items:[
+        'Full meal — eat well at the end of the day',
+        'Family time: no phone, no music apps at the table',
+      ]},
+      {time:'19:00+',name:'Free time',cls:'life',items:[
+        'Evening is yours — rest, socialise, or light reading',
+        "Aim to be asleep by 23:00 to protect Monday's early start",
+      ]},
+    ],tip:"Sunday is your reset day. The recording session is the week's check-in — date every file."},
+
+    // Monday (dow=1)
+    1:{blocks:[
+      {time:'07:00–07:30',name:'Wake up',cls:'life',items:[
+        'Drink a full glass of water immediately — hydration from sleep deficit',
+        'Avoid the phone for the first 10 minutes; let the nervous system wake up gently',
+        'Set your intention for the practice day ahead',
+      ]},
+      {time:'07:30–08:00',name:'Run',cls:'life',items:[
+        'Easy aerobic pace — 20–30 min, conversational effort, no racing',
+        'Warm up with a 5-min walk first; cool down the same way after',
+        'Use this time to mentally preview the practice session: what are you working on today?',
+      ]},
+      {time:'08:00–08:30',name:'Shower, breakfast, rest',cls:'life',items:[
+        'Protein + complex carbs: eggs, oats, fruit — fuel a full practice day',
+        'No horn within 30 min of eating; give the body time to settle',
+      ]},
+      {time:'08:30–10:00',name:'Free time',cls:'life',items:[
+        'Unstructured time before the practice window — rest, read, or light movement',
+        'Do not start practice early; protect the 10:00 session start',
+      ]},
+      DR,
+      {time:'10:30–11:00',name:'Long tones',items:[
+        'Full range, piano dynamic, one full bow of air per note — no rush between pitches',
+        'Feel the tone centre lock in before moving to the next pitch',
+        'Stop if the jaw or neck tightens; breathe deliberately and reset before continuing',
+        'Descend first: gravity and a low tongue position work with you going down',
+      ]},
+      {time:'11:00–11:30',name:'BE Slow Lip Slurs',items:[
+        'Brad Edwards sets 1–3 at current working tempo',
+        'Sing each pattern first if the slur breaks down — hear it before playing it',
+        'Aim for ease and comfort, not speed; a smooth slur is the entire goal',
+        'Aperture relaxes on the way up; air speed increases instead of squeezing',
+      ]},
+      {time:'11:30–12:00',name:'Free time',cls:'life',items:[
+        'Short break after the morning session — walk, stretch, hydrate',
+      ]},
+      {time:'12:00–13:00',name:'Lunch with family',cls:'life',items:[
+        'Sit down and eat properly — not at a screen',
+        'A proper mid-day meal sustains the whole afternoon session',
+        'Connection with family is part of a sustainable summer routine',
+      ]},
+      {time:'13:00–14:00',name:'Free time',cls:'life',items:[
+        'Rest after lunch — digestion and mental consolidation',
+        'A 20-min nap here is legitimate recovery; set an alarm so it does not run long',
+      ]},
+      {time:'14:00–14:30',name:'Remington / Arban scales',items:[
+        'Remington scale patterns at current working tempo',
+        'Push by +4 bpm only if tone and coordination stayed stable throughout the set',
+        'Three clean reps at new tempo = it counts; if tone suffers, stay at current tempo',
+        'Slide moves with the air, not ahead of it: the breath leads every scale step',
+      ]},
+      {time:'14:30–15:00',name:'Chromatic Scales',items:[
+        'Full range — even spacing, clean slide, even tone across all registers',
+        'Work at current chromatic tempo target (see phase card above)',
+        'One note per bow of air: do not rush the slide between semitones',
+        'Listen for any note that goes dull or sharp — those are the tension spots',
+      ]},
+      {time:'15:00–15:30',name:'Free time / rest',cls:'life',items:[
+        'Mid-afternoon break — essential before the second practice window',
+        'Hydrate, have a light snack, move away from the music',
+      ]},
+      {time:'15:30–16:00',name:'Bordogni',items:[
+        'Choose Vocalise No.1 or 2',
+        'Sing the line all the way through before picking up the horn',
+        'Play at 60% speed — free tone, not speed; stop and reset if any tension enters',
+        'Legato is the primary goal: no air gaps, no bumps between notes',
+      ]},
+      {time:'16:00–16:30',name:'Fast Lip Slurs',items:[
+        'Lip slur sets at current working tempo — push carefully',
+        'If a slur breaks down: drop to slow tempo, sing it first, then rebuild gradually',
+        'Record 60 seconds and listen back for jaw movement or neck tension',
+        'Speed comes from relaxation, not from force',
+      ]},
+      {time:'16:30–18:00',name:'Free time',cls:'life',items:[
+        'Practice window is closed — genuine downtime',
+        'Get outside if possible; fresh air and movement aid physical recovery',
+      ]},
+      {time:'18:00–19:00',name:'Dinner with family',cls:'life',items:[
+        'Full meal before the evening commitment — eat well, not just enough',
+        'No horn and no scores at the table',
+      ]},
+      {time:'19:00–20:30',name:'Travel to Musospace',cls:'life',items:[
+        'Pack water and a light snack if the venue is far',
+        'Passive listening on the way is fine — familiar repertoire, nothing demanding',
+        'Arrive 10 min early to settle in before rehearsal begins',
+      ]},
+      {time:'20:30–22:00',name:'Choral group rehearsal',cls:'choir',items:[
+        'Fixed weekly commitment — do not schedule solo practice here',
+        'Ensemble ear training: tune to the group, listen across the section',
+        'Sight-reading and blend work transfers directly to orchestral ensemble awareness',
+      ]},
+      {time:'22:00–22:30',name:'Travel back home',cls:'life',items:[
+        'Wind down on the way home — no high-stimulus content',
+        'Note one thing from the rehearsal worth carrying into the week',
+      ]},
+      {time:'22:30+',name:'Free time',cls:'life',items:[
+        'Keep it calm — you have an early start tomorrow',
+        'Aim to be asleep within the hour',
+      ]},
     ],tip:'Monday sets the physiological baseline for the week. A rushed Monday creates tension that compounds through Friday.'},
 
+    // Tuesday (dow=2)
     2:{blocks:[
+      {time:'08:30–09:00',name:'Wake up, breakfast',cls:'life',items:[
+        'Drink water first; give the body 10 min before eating',
+        'Protein + complex carbs before a full practice and choir day',
+        'No horn within 30 min of eating',
+      ]},
+      {time:'09:00–10:00',name:'Free time',cls:'life',items:[
+        'Unstructured morning — ease gently into the day',
+        'Light movement, reading, or fresh air before the 10:00 routine',
+      ]},
       DR,
-      {time:'11:15–11:45',name:'Scales — working tempo',items:['Remington scale patterns at current working tempo','Push by +4 bpm only if tone and coordination stayed stable','Three clean reps at new tempo = it counts','If unstable: drop back, do not force']},
-      {time:'11:45–12:15',name:'Chromatic scales + Arban articulation',items:['Chromatic scales full range — even spacing, clean slide','Arban single tongue studies pp.1–8','Each attack: open air stream, then tongue — not tongue first','Record 30 seconds; listen for unevenness']},
-      {time:'12:15–12:45',name:'Scale extension and coordination',items:['Scales in thirds, fourths, and arpeggios','Work at 70% of Remington tempo to maintain quality','Focus: slide moves with the air, not ahead of it']},
-      {time:'Afternoon',name:'Short recording review',items:['Listen to the morning recording','Note one improvement and one thing to fix tomorrow']},
-      {time:'7:30–10:30 PM',name:'Vox Camerata Chamber Singers rehearsal',cls:'choir',items:['Fixed weekly commitment — do not schedule practice here','This counts as ensemble ear training and sight-reading','Note anything that connects to your solo work']},
+      {time:'10:30–11:00',name:'Slow Intervals',items:[
+        'Arban interval studies — all major and minor intervals at a slow, deliberate tempo',
+        'Sing each interval aloud before playing it; tune it with intention, do not guess',
+        'Mark intervals you consistently miss — those become ear training targets',
+        'Slide accuracy is as important as pitch: land cleanly on each note',
+      ]},
+      {time:'11:00–11:30',name:'Arbans Slurs',items:[
+        'Arban slur studies — smooth, connected tone, no bump at each note change',
+        'Air drives the slur; aperture follows — the jaw stays soft throughout',
+        'Slow enough that every slur is clean; speed is not the goal today',
+        'If a slur is rough: sing it first, then play it — the voice finds the line first',
+      ]},
+      {time:'11:30–12:00',name:'Free time',cls:'life',items:[
+        'Short break — walk, stretch, hydrate before lunch',
+      ]},
+      {time:'12:00–13:00',name:'Lunch with family',cls:'life',items:[
+        'Sit down, eat properly — not at a screen',
+        'A proper mid-day meal with a long choir evening ahead: fuel counts',
+      ]},
+      {time:'13:00–14:00',name:'Free time',cls:'life',items:[
+        'Rest after lunch — consolidation time',
+        'A 20-min nap is fine; set an alarm so it does not cut into the afternoon session',
+      ]},
+      {time:'14:00–14:30',name:'Arbans First Studies',items:[
+        'Arban pp.1–8 single tongue',
+        'Each attack: open air stream first, then tongue — tongue releases, not blocks',
+        'Even weight on every note: no unintentional accents',
+        'Record 30 seconds and listen back for uneven attack weight or spacing',
+      ]},
+      {time:'14:30–15:00',name:'Arbans Syncopation',items:[
+        'Arban syncopation exercises — keep the internal pulse absolutely steady',
+        'Tap your foot throughout; the horn does not get to rush the syncopation',
+        'If rushing: sing it with the foot tap first, then play it',
+        'Exaggerate the off-beats slightly until they feel natural and inevitable',
+      ]},
+      {time:'15:00–15:30',name:'Free time / rest',cls:'life',items:[
+        'Mid-afternoon break — essential before the second window',
+        'Hydrate, light snack, move away from the music',
+      ]},
+      {time:'15:30–16:00',name:'Arbans Intervals',items:[
+        'Arban interval etudes — accuracy over speed in every bar',
+        'Every interval must land in tune: listen, do not just land and move on',
+        'Mark any interval that goes sharp or flat; fix it before moving to the next exercise',
+        'Slow is a tempo, not a failure — own the speed you are at',
+      ]},
+      {time:'16:00–16:30',name:'Arbans Perfect Chords',items:[
+        'Arban arpeggio and perfect chord studies',
+        'Even air through all three notes of each arpeggio — no extra push at the top',
+        'Slide stays even throughout: no clipping at the top or bottom note',
+        'Listen for the chord to ring as a unit, not as three separate pitches',
+      ]},
+      {time:'16:30–18:00',name:'Free time',cls:'life',items:[
+        'Practice window closed — rest before the long evening ahead',
+        'Eat a light snack; a full rehearsal is coming',
+      ]},
+      {time:'18:00–19:00',name:'Dinner with family',cls:'life',items:[
+        'Eat well before the rehearsal — a full meal, not a snack',
+        'Leave the house calm and properly fuelled; do not rush out late',
+      ]},
+      {time:'19:00–19:30',name:'Travel to Aliwal Arts Centre',cls:'life',items:[
+        'Leave with enough time to arrive 10 min before rehearsal starts',
+        'Warm up the voice on the way; gentle humming is fine on transit',
+      ]},
+      {time:'19:30–22:00',name:'Vox Camerata Chamber Singers',cls:'choir',items:[
+        'Fixed weekly commitment at Aliwal Arts Centre',
+        'Ensemble ear training: tune to the group, blend within the section',
+        'Sight-reading and active choral listening transfers directly to orchestral part awareness',
+        'Note anything that connects to solo intonation, phrasing, or blend work',
+      ]},
+      {time:'22:00–22:30',name:'Travel back home',cls:'life',items:[
+        'Wind down on the way — avoid high-stimulus content on the way back',
+        'Note one thing from rehearsal worth carrying into the practice week',
+      ]},
+      {time:'22:30+',name:'Free time',cls:'life',items:[
+        'Keep it calm — full practice day again tomorrow',
+        'Bed within the hour if possible',
+      ]},
     ],tip:'On articulation: tongue placement should feel like releasing a note, not blocking it. The air is always moving.'},
 
+    // Wednesday (dow=3)
     3:{blocks:[
+      {time:'08:30–09:00',name:'Wake up, breakfast',cls:'life',items:[
+        'Water first — same routine as Tuesday',
+        'Protein + complex carbs before the morning session',
+        'No horn within 30 min of eating',
+      ]},
+      {time:'09:00–10:00',name:'Free time',cls:'life',items:[
+        'Unstructured morning — ease in gently before the 10:00 routine',
+        'Light movement, reading, or fresh air',
+      ]},
       DR,
-      {time:'11:15–11:45',name:'Scales — register-spanning',items:['Full-range scale across the register break','Slow — feel the transition, do not grip','At each break: relax the aperture, let the air drive the change']},
-      {time:'11:45–12:15',name:'Brad Edwards lip slurs',items:['Sets 1–3 at current working tempo','Sing the pattern first if the slur breaks down','Aim for comfort and ease, not speed']},
-      {time:'12:15–12:45',name:'Bordogni + drone work',items:['Choose a study that crosses the register break (e.g. No.5, No.12)','Play with a sustained drone to check pitch stability','Record 2 minutes; listen for pitch drift at transitions']},
-      {time:'Afternoon',name:'Tension check recording',items:['Set up a camera facing you','Play the lip slur set once','Watch it back: jaw, neck, shoulder — where does tension enter?']},
+      {time:'10:30–11:00',name:'Long tones',items:[
+        'Full range, piano dynamic, one note per full bow of air — no rushing',
+        'Focus on tone centre: feel it lock in before moving to the next pitch',
+        'Mid-week check: does the tone feel as free as Monday? If tighter, fix the air first',
+        'Descend first; use gravity and a low tongue position',
+      ]},
+      {time:'11:00–11:30',name:'BE Slow Lip Slurs',items:[
+        'Brad Edwards sets 1–3 — slightly slower than Monday if the body needs it',
+        'Aim for the register break to feel easy, not forced: air speed drives it',
+        'If the slur breaks: sing the pattern first, then re-approach at a lower tempo',
+        'Notice whether Wednesday feels more or less tense than Monday — that is your recovery data',
+      ]},
+      {time:'11:30–12:00',name:'Free time',cls:'life',items:[
+        'Short break before lunch — step outside, hydrate, stretch',
+      ]},
+      {time:'12:00–13:00',name:'Lunch with family',cls:'life',items:[
+        'Proper mid-day meal — sit down, eat well',
+        'Mid-week lunch: check in with people outside the practice bubble',
+      ]},
+      {time:'13:00–14:00',name:'Free time',cls:'life',items:[
+        'Rest after lunch — let the body consolidate the morning session',
+        'Do not review recordings or scores during this window',
+      ]},
+      {time:'14:00–14:30',name:'Chromatic Scales',items:[
+        'Full range chromatic — even slide, even air, even tone across every semitone',
+        'Work at current target tempo, or 5 bpm below if Monday showed instability',
+        'Every semitone deserves the same attention — do not speed up through familiar territory',
+        'Clean slide means no extra motion and no pause before moving to the next position',
+      ]},
+      {time:'14:30–15:00',name:'Flexibility',items:[
+        'Quick register changes without gripping — air speed change, not aperture squeeze',
+        'The jaw stays soft throughout: any jaw movement is tension, not flexibility',
+        'Work patterns that cross the staff: F3 to Bb4 and back, in both directions',
+        'Record yourself: visible jaw or neck movement shows what you cannot feel from the inside',
+      ]},
+      {time:'15:00–15:30',name:'Free time / rest',cls:'life',items:[
+        'Mid-afternoon break — hydrate, snack lightly, move',
+        'Essential gap before the second window',
+      ]},
+      {time:'15:30–16:00',name:'Arbans Dominant 7ths',items:[
+        'Arban dominant 7th arpeggio studies',
+        'The tritone in the dominant 7th must be precisely in tune — it defines the whole chord',
+        'Slow enough that every note has its own air stream and its own slide position',
+        'Listen for the resolution tendency: the 7th wants to fall, the leading tone wants to rise',
+      ]},
+      {time:'16:00–16:30',name:'Arbans Diminished 7ths',items:[
+        'Arban diminished 7th studies — equal distance between every interval in the chord',
+        'This is a coordination test: all four notes must have identical weight and spacing',
+        'If any slide position is sloppy: slow down further, do not force through',
+        'The symmetric nature of the dim7 means any pitch error is immediately audible',
+      ]},
+      {time:'16:30–18:00',name:'Free time',cls:'life',items:[
+        'Practice done — genuine downtime',
+        'Get outside, move, do something entirely unrelated to music',
+      ]},
+      {time:'18:00–19:00',name:'Dinner with family',cls:'life',items:[
+        'Full meal — eat well before the evening',
+        'Unplug from music for the hour',
+      ]},
+      {time:'19:00+',name:'Free time',cls:'life',items:[
+        'Rest evening — no commitments tonight',
+        'Light reading, socialising, or passive listening is fine',
+        "Aim to be asleep by 23:00 to protect tomorrow's early run",
+      ]},
     ],tip:'Register connection breaks are almost always a breathing problem, not an embouchure problem. Find the breath first.'},
 
+    // Thursday (dow=4)
     4:{blocks:[
+      {time:'07:00–07:30',name:'Wake up',cls:'life',items:[
+        'Water immediately — same protocol as Monday',
+        'Avoid the phone for the first 10 minutes',
+        'Set your intention for the day: scale maintenance and Bordogni',
+      ]},
+      {time:'07:30–08:00',name:'Run',cls:'life',items:[
+        'Easy pace, 20–30 min — same as Monday',
+        "Use the run to mentally review Wednesday's session and set Thursday's focus",
+      ]},
+      {time:'08:00–08:30',name:'Shower, breakfast, rest',cls:'life',items:[
+        'Protein + complex carbs before the practice day',
+        'No horn within 30 min of eating',
+      ]},
+      {time:'08:30–10:00',name:'Free time',cls:'life',items:[
+        'Unstructured morning — read, rest, or light movement',
+        'Do not start practice early; protect the designated 10:00 session',
+      ]},
       DR,
-      {time:'11:15–11:45',name:'Scales — maintenance',items:['Remington at current tempo (maintenance, not a push)','Chromatic scales — clean and even','Keep it light: this is not the day to push tempos']},
-      {time:'11:45–12:15',name:'Orchestral excerpt 1',items:['Listen to a professional recording first, twice','Read slowly without stopping','Identify the two hardest bars; work them in isolation']},
-      {time:'12:15–12:45',name:'Orchestral excerpt 2',items:['Different excerpt — vary the technical demand','Score study first: dynamics, context, ensemble role','End with a full read-through at tempo']},
-      {time:'Afternoon',name:'Score study and video',items:['Follow the score of a full movement containing your excerpt','Watch a professional perform one excerpt — observe their physical setup']},
+      {time:'10:30–11:00',name:'Slow Intervals',items:[
+        'Arban interval studies — same material as Tuesday, maintenance tempo',
+        'Listen critically: are they as clean and in tune as Tuesday?',
+        'If an interval slipped since Tuesday, isolate it and fix it before moving on',
+        'Consistency across the week is real progress',
+      ]},
+      {time:'11:00–11:30',name:'Arbans Slurs',items:[
+        'Arban slur studies — smooth, connected',
+        'Note any slur that still breaks from Tuesday; work it in 2-bar isolation first',
+        'Mid-week: if slurs feel easier than Tuesday, the week is working',
+        'Ease in the slur = the air and aperture are coordinating correctly',
+      ]},
+      {time:'11:30–12:00',name:'Free time',cls:'life',items:[
+        'Short break — walk, stretch, hydrate before lunch',
+      ]},
+      {time:'12:00–13:00',name:'Lunch with family',cls:'life',items:[
+        'Sit down, eat properly — not at a screen',
+        'Full mid-day meal sustains the afternoon session',
+      ]},
+      {time:'13:00–14:00',name:'Free time',cls:'life',items:[
+        'Rest after lunch — consolidation and recovery',
+        'A 20-min nap is fine; set an alarm',
+      ]},
+      {time:'14:00–14:30',name:'Remington / Arban scales',items:[
+        'Remington at current working tempo — maintenance, not a push today',
+        'Thursday is a lighter scale day: keep the air easy and the tone free',
+        'If it feels easy, that is exactly the point — let it be easy',
+      ]},
+      {time:'14:30–15:00',name:'Bordogni',items:[
+        'Choose a study that crosses the register break (e.g. No.5, No.12)',
+        'Play with a sustained drone pitch to check intonation stability throughout',
+        'Record 2 minutes; listen back for pitch drift at the register transitions',
+        'Legato is the goal: no air gaps, no extra tongue between notes',
+      ]},
+      {time:'15:00–15:30',name:'Free time / rest',cls:'life',items:[
+        'Mid-afternoon break — essential before the second window',
+        'Hydrate, move, rest properly',
+      ]},
+      {time:'15:30–16:00',name:'Fast Lip Slurs',items:[
+        'Lip slur sets at current working tempo',
+        'If tension arrives anywhere in the body: stop, breathe deliberately, reset before continuing',
+        'Speed here should feel earned, not forced — the air leads, the lips follow',
+        'Record one set and check for jaw or neck movement on playback',
+      ]},
+      {time:'16:00–16:30',name:'Arbans Chromatic',items:[
+        'Arban chromatic studies — single tongue, even and clear across every semitone',
+        'Aim for identical slide speed on every chromatic run: no hesitation on the awkward positions',
+        'Record one exercise and compare slide evenness vs. pitch accuracy — usually one is ahead of the other',
+      ]},
+      {time:'16:30–18:00',name:'Free time',cls:'life',items:[
+        'Practice done — rest properly before dinner',
+        'Get outside, move, decompress',
+      ]},
+      {time:'18:00–19:00',name:'Dinner with family',cls:'life',items:[
+        'Full meal at the end of the practice day — eat well',
+        'Family time away from the music',
+      ]},
+      {time:'19:00+',name:'Free time',cls:'life',items:[
+        'Rest evening — no fixed commitments tonight',
+        'Passive listening or light reading is fine',
+        'Aim to be asleep by 23:00',
+      ]},
     ],tip:'Know the orchestral context, not just your part. Excerpt preparation is ensemble preparation.'},
 
+    // Friday (dow=5)
     5:{blocks:[
+      {time:'08:30–09:00',name:'Wake up, breakfast',cls:'life',items:[
+        'Water, then food — same as Tuesday and Wednesday',
+        'End-of-week check: has the routine felt sustainable this week? Adjust next week if not.',
+      ]},
+      {time:'09:00–10:00',name:'Free time',cls:'life',items:[
+        'Unstructured morning — ease into the final practice day of the week',
+        'No scores until 10:00',
+      ]},
       DR,
-      {time:'11:15–12:00',name:'Scales — extended session',items:['45 min dedicated to scale work','Remington, chromatic, thirds, arpeggios — work through the full set','This is the main technical block of Friday — not a warm-up','Push tempo carefully; stop if tone suffers']},
-      {time:'12:00–12:30',name:'Recital repertoire — maintenance',items:['One full run-through, no stopping','Sing the line first if a passage feels uncertain','The goal is ownership, not perfection']},
-      {time:'Afternoon',name:'Memorisation and interpretation',items:['Work one problem passage in isolation (slow → build)','Memorise the opening 16 bars; cover the page and test yourself','Record the run-through; listen back']},
-    ],tip:"Scales are Friday's main work. Recital repertoire is maintained here, not developed — that comes from the rest of the week."},
+      {time:'10:30–11:00',name:'Long tones',items:[
+        'Full range, piano dynamic — end the week exactly as you started it on Monday',
+        'Any change in tone quality or ease since Monday? Note it honestly',
+        'If the tone is freer on Friday than Monday, the week progressed as intended',
+        'This is diagnostic as much as technical: the data is in how it feels',
+      ]},
+      {time:'11:00–11:30',name:'BE Slow Lip Slurs',items:[
+        'Brad Edwards sets 1–3 — notice whether this feels easier than Monday',
+        'Ease = the week worked; harder or the same = something specific to address next week',
+        'Sing the first pattern before playing it — establish the line in the ear first',
+      ]},
+      {time:'11:30–12:00',name:'Free time',cls:'life',items:[
+        'Short break before lunch — walk, stretch, hydrate',
+      ]},
+      {time:'12:00–13:00',name:'Lunch with family',cls:'life',items:[
+        'Full mid-day meal — the afternoon is articulation work which needs clear air support',
+        'Sit down properly; no rushing today',
+      ]},
+      {time:'13:00–14:00',name:'Free time',cls:'life',items:[
+        'Rest after lunch — a 20-min nap is fine',
+        'Let the body consolidate the morning session before the afternoon window',
+      ]},
+      {time:'14:00–14:30',name:'Arbans First Studies',items:[
+        'Arban pp.1–8 — single tongue at working tempo',
+        "Friday articulation work should feel like consolidation: cleaner and more confident than Tuesday",
+        'If it does not feel easier than Tuesday, note specifically what changed — that is the focus next week',
+      ]},
+      {time:'14:30–15:00',name:'Arbans Syncopation',items:[
+        'Arban syncopation — push tempo by 2–3 bpm if Tuesday felt solid and controlled',
+        'Keep the foot tap throughout: the internal pulse is everything in syncopation',
+        'Record 60 seconds; listen for whether the off-beats sound intentional or accidental',
+      ]},
+      {time:'15:00–15:30',name:'Free time / rest',cls:'life',items:[
+        'Mid-afternoon break before the tonguing session',
+        'Tonguing work demands fresh attention — this rest matters',
+      ]},
+      {time:'15:30–16:00',name:'Triple Tongue',items:[
+        'T-K-T pattern — start slow (quarter = 60 or below), then build by 4 bpm per pass',
+        'T and K must sound identical in weight, duration, and clarity',
+        'Do not increase speed until both syllables are genuinely even — rushing exposes the K weakness faster',
+        'Record a run and compare T vs K attacks: they should be indistinguishable',
+      ]},
+      {time:'16:00–16:30',name:'Double Tongue',items:[
+        'T-K pattern — same principle: clarity over speed throughout',
+        'Arban double-tongue studies starting at the lowest comfortable tempo',
+        'The K syllable is the diagnostic: if double tongue breaks down, the K is weak',
+        'Practise K alone in isolation before combining T-K if needed',
+      ]},
+      {time:'16:30–18:00',name:'Free time',cls:'life',items:[
+        'End-of-week practice complete — proper rest until Monday',
+        'No additional practice this weekend unless specifically scheduled',
+      ]},
+      {time:'18:00–19:00',name:'Dinner with family',cls:'life',items:[
+        'Full meal — eat well at the end of the working week',
+        'No scores or practice planning at dinner',
+      ]},
+      {time:'19:00+',name:'Free time',cls:'life',items:[
+        'Friday evening is yours — rest, socialise, go out',
+        'You have earned genuine downtime: use it fully',
+      ]},
+    ],tip:"Scales are the main work of Friday morning. Articulation in the afternoon is technique, not performance — keep it methodical."},
 
+    // Saturday (dow=6)
     6:{blocks:[
+      {time:'07:00–07:30',name:'Wake up',cls:'life',items:[
+        'Water immediately — choir day ahead, so hydration matters even more than usual',
+        'Take 10 minutes before the phone and before planning the day',
+      ]},
+      {time:'07:30–08:00',name:'Run',cls:'life',items:[
+        'Easy pace, 20–30 min — same as Monday and Thursday',
+        'Saturday run: debrief the week mentally while you move — what worked, what to carry forward',
+      ]},
+      {time:'08:00–08:30',name:'Shower, breakfast, rest',cls:'life',items:[
+        'Protein + complex carbs before a long choir day — you are singing for 5 hours',
+        'Fuel the morning properly: you will not eat properly again until 18:00',
+      ]},
+      {time:'08:30–10:00',name:'Free time',cls:'life',items:[
+        'Unstructured time before practice — rest, read, light movement',
+        'Do not start the morning session early; protect the 10:00 start',
+      ]},
       DR,
-      {time:'11:15–11:45',name:'Week review',items:['Play the current Remington tempo — did it hold?','Play the current lip slur tempo — any tension?','Honest self-assessment: what improved this week?']},
-      {time:'11:45–12:30',name:'Recording session',items:['Record the three tempo targets (Remington, Chromatic, Lip slurs)','Record a full run of recital repertoire','Save with today\'s date — this is your progress log']},
-      {time:'1:00–6:00 PM',name:'Vox Camerata Community Choir',cls:'choir',items:['Fixed weekly commitment — do not schedule practice here','This counts as ensemble ear training and musicianship','Note anything from rehearsal that connects to your solo work']},
-      {time:'After 6:00 PM',name:'Evening wind-down',items:['Protect this time — you\'ve had a full day','Professional development only if energy allows (CV, bio, LinkedIn)','No heavy technical practice after choir']},
-    ],tip:"The Saturday recording is your progress document. Date every file. Finish it before 1pm — choir starts then."},
+      {time:'10:30–11:00',name:'Active Listening',items:[
+        'Listen to a professional trombone recording — no phone, no multitasking, full attention',
+        'Note one specific technical thing: articulation style, tone colour, or dynamic shape',
+        'Ask: what does this player do that you want to bring into your own playing?',
+      ]},
+      {time:'11:00–11:30',name:'Ear Training',items:[
+        'Interval and chord recognition — 15 min focused session',
+        'Transcribe 4–6 bars by ear before heading out; write it, do not record it',
+        'End of week: you should be slightly sharper at this than last Saturday — note whether that is true',
+      ]},
+      {time:'11:30–12:00',name:'Free time',cls:'life',items:[
+        'Pack your bag for choir: water bottle, snacks, score if needed',
+        'Light snack before you leave — the next proper meal is dinner',
+      ]},
+      {time:'12:00–13:00',name:'Travel to Aliwal Arts Centre',cls:'life',items:[
+        'Leave at 12:00 — build in time for transit delays',
+        'Warm up the voice on the way: gentle humming on the bus or MRT is fine',
+        'Arrive at least 10 min before the 13:00 downbeat',
+      ]},
+      {time:'13:00–18:00',name:'Vox Camerata Community Choir',cls:'choir',items:[
+        'Fixed 5-hour weekly commitment — full attention, full participation throughout',
+        'Hydrate every break: drink water consistently, not just when thirsty',
+        'Blend and tune to the group: your ears are doing as much work as your voice',
+        'Note one thing from rehearsal that connects to your solo trombone work this week',
+      ]},
+      {time:'18:00–19:00',name:'Dinner with family',cls:'life',items:[
+        'Eat a full meal after the long choir day — your body needs proper fuel and recovery',
+        'Family time: you have been with other musicians all day, now be with family',
+      ]},
+      {time:'19:00–19:30',name:'Free time',cls:'life',items:[
+        'Brief rest after dinner before the evening session',
+        'Keep it calm: the evening work is intentionally light',
+      ]},
+      {time:'19:30–20:00',name:'Sight-singing',items:[
+        'Ottman: 3–4 exercises — ears-only, no humming before each exercise',
+        'Keep it focused and brief; you have had a full choir day',
+        'Sight-singing after choir is a calibration: choir tunes your ear, now test it independently',
+      ]},
+      {time:'20:00–20:30',name:'Transcription',items:[
+        'Transcribe 4–6 bars of a trombone excerpt by ear — slow the playback right down',
+        'Light mental work only; no horn, no heavy practice tonight',
+        'Write it out by hand; verify against the score tomorrow',
+      ]},
+      {time:'20:30+',name:'Free time',cls:'life',items:[
+        'Evening is done — genuine rest',
+        'Aim to be asleep by 23:00: Sunday has a recording session',
+      ]},
+    ],tip:"The morning practice finishes before 1pm — choir starts then. Everything after choir is light musicianship only."},
   };
 
-  // ── STORAGE (block-level) ────────────────────────────────
+  // -- STORAGE (block-level) --
   // Structure: { "2026-5-4": { "0": true, "2": true } }
   function getStorage(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');}catch{return {};}}
   function saveStorage(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));}
@@ -495,7 +1017,7 @@
     dots.forEach((dot,i)=>{dot.classList.toggle('done',isBlockDone(y,m,d,i));});
   }
 
-  // ── PROGRESS COUNTERS ────────────────────────────────────
+  // -- PROGRESS COUNTERS --
   function getMonthStats(y,m){
     const days=new Date(y,m+1,0).getDate();
     let totalB=0,doneB=0;
@@ -525,7 +1047,7 @@
     if(te)te.textContent=`${gd}/${gt} blocks`;
   }
 
-  // ── MODAL ────────────────────────────────────────────────
+  // -- MODAL --
   let openDayRef=null;
 
   function updateModalProgress(y,m,d){
@@ -535,7 +1057,7 @@
     const el=document.getElementById('modal-day-prog');
     if(el){
       if(done===0)el.innerHTML=`<span>0</span>/${total} blocks completed`;
-      else if(done===total)el.innerHTML=`All <span>${total}/${total}</span> blocks completed ✓`;
+      else if(done===total)el.innerHTML=`All <span>${total}/${total}</span> blocks completed &#x2713;`;
       else el.innerHTML=`<span>${done}</span>/${total} blocks completed`;
     }
   }
@@ -569,7 +1091,7 @@
     const done=getBlocksDoneCount(y,m,d);
     body+=`<div class="modal-day-prog" id="modal-day-prog">`;
     if(done===0)body+=`<span>0</span>/${total} blocks completed`;
-    else if(done===total)body+=`All <span>${total}/${total}</span> blocks completed ✓`;
+    else if(done===total)body+=`All <span>${total}/${total}</span> blocks completed &#x2713;`;
     else body+=`<span>${done}</span>/${total} blocks completed`;
     body+=`</div>`;
 
@@ -615,7 +1137,7 @@
   }
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalDirect();});
 
-  // ── TEMPO TIMELINE ───────────────────────────────────────
+  // -- TEMPO TIMELINE --
   function buildTempoTimeline(){
     const exercises=[
       {name:'Remington scale patterns',start:70,p1:80,p2:90,target:100},
@@ -646,7 +1168,7 @@
     });
   }
 
-  // ── CALENDAR ─────────────────────────────────────────────
+  // -- CALENDAR --
   function buildCalendar(){
     const months=[
       {year:2026,month:5,label:'June 2026'},
@@ -702,16 +1224,16 @@
     });
   }
 
-  // ── WEEKLY REF ───────────────────────────────────────────
+  // -- WEEKLY REF --
   function buildWeekRef(){
     const days=[
-      {dow:1,focus:'Recovery & Musicianship',summary:'Daily routine (45 min), gentle Bordogni, Ottman sight-singing, ear training, transcription, physical recovery.'},
-      {dow:2,focus:'Coordination & Articulation',summary:'Daily routine (45 min), scales at working tempo, chromatic + Arban, scale extension. Evening: VC Chamber Singers 7:30–10:30 PM.'},
-      {dow:3,focus:'Register & Flexibility',summary:'Daily routine (45 min), register-spanning scales, Brad Edwards lip slurs, Bordogni with drone, tension check recording.'},
-      {dow:4,focus:'Excerpts',summary:'Daily routine (45 min), scale maintenance (light), two orchestral excerpts with listening and score study.'},
-      {dow:5,focus:'Scales & Repertoire',summary:'Daily routine (45 min), 45-min extended scale session (main technical block), recital repertoire maintenance, memorisation.'},
-      {dow:6,focus:'Consolidation + VC Choir',summary:'Daily routine (45 min), week review, recording session — all before 1pm. 1–6pm: VC Community Choir. Evening: wind-down only.'},
-      {dow:0,focus:'Rest',summary:'No instrument. Mental practice only if needed. Protect recovery completely.'},
+      {dow:1,focus:'Fundamentals & Technique',summary:'Daily routine (30 min) · Long tones · BE Slow Lip Slurs · Remington/Arban scales · Chromatic scales · Bordogni · Fast Lip Slurs. Evening: choral group rehearsal at Musospace 7:30–10:30 PM.'},
+      {dow:2,focus:'Coordination & Articulation',summary:'Daily routine (30 min) · Slow Intervals · Arbans Slurs · Arbans First Studies · Arbans Syncopation · Arbans Intervals · Arbans Perfect Chords. Evening: VC Chamber Singers at Aliwal Arts Centre 7:30–10:30 PM.'},
+      {dow:3,focus:'Register & Flexibility',summary:'Daily routine (30 min) · Long tones · BE Slow Lip Slurs · Chromatic scales · Flexibility · Arbans Dominant 7ths · Arbans Diminished 7ths.'},
+      {dow:4,focus:'Scales & Lip Slurs',summary:'Daily routine (30 min) · Slow Intervals · Arbans Slurs · Remington/Arban scales · Bordogni · Fast Lip Slurs · Arbans Chromatic.'},
+      {dow:5,focus:'Articulation & Tonguing',summary:'Daily routine (30 min) · Long tones · BE Slow Lip Slurs · Arbans First Studies · Arbans Syncopation · Triple Tongue · Double Tongue.'},
+      {dow:6,focus:'Consolidation + VC Choir',summary:'Daily routine (30 min) · Active Listening · Ear Training — all before 1pm. 1–6pm: VC Community Choir at Aliwal Arts Centre. Evening: light Sight-singing and Transcription only.'},
+      {dow:0,focus:'Musicianship & Review',summary:'Daily routine (30 min) · Active Listening · Ear Training · Sight-singing · Transcription · Recording session · Rest and review.'},
     ];
     const el=document.getElementById('week-ref');
     days.forEach(d=>{
@@ -724,7 +1246,7 @@
     });
   }
 
-  // ── INIT ─────────────────────────────────────────────────
+  // -- INIT --
   document.getElementById('today-label').textContent=
     `${DOW_NAMES[TODAY.getDay()]}, ${TODAY.getDate()} ${MONTH_NAMES[TODAY.getMonth()-5]}`;
 
